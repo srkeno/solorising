@@ -1432,7 +1432,7 @@ function toggleDay(f,d){if(!S.profile)S.profile={};if(!S.profile[f])S.profile[f]
 function saveProfile(){
   if(!S.profile)S.profile={};
   S.profile.stepsGoal=parseInt(document.getElementById('steps-inp').value)||10000;
-  S.quests=buildDay(S.dow,S);S.checked={};
+  // Ne PAS reconstruire les quêtes en cours de journée
   save();render();
   const ps=document.getElementById('psaved');ps.classList.add('show');setTimeout(()=>ps.classList.remove('show'),2000);
 }
@@ -1539,11 +1539,9 @@ function nextDay(){
 
 function toggleVacation(){
   S.vacationMode=!S.vacationMode;
-  // Rebuild today's quests with/without BYD
-  S.quests=buildDay(S.dow,S);
-  S.checked={};
+  // Ne PAS reconstruire les quêtes en cours de journée
   save();render();
-  notif(S.vacationMode?'⛱ Mode vacances activé — quêtes BYD off':'✓ Mode vacances désactivé');
+  notif(S.vacationMode?'⛱ Mode vacances activé':'✓ Mode vacances désactivé');
 }
 
 function completeRedemption(){
