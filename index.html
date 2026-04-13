@@ -37,6 +37,11 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .day-info{display:flex;align-items:center;gap:8px;}
 .day-num{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);}
 .off-badge{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--green);background:rgba(0,245,160,.08);border:1px solid rgba(0,245,160,.2);padding:3px 8px;border-radius:2px;letter-spacing:2px;}
+.freeze-banner{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(0,207,255,.05);border:1px solid rgba(0,207,255,.2);border-radius:4px;padding:9px 14px;margin-bottom:9px;}
+.frz-info{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--blue);line-height:1.5;}
+.frz-btn{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:6px 12px;border-radius:2px;cursor:pointer;border:1px solid rgba(0,207,255,.3);background:rgba(0,207,255,.1);color:var(--blue);text-transform:uppercase;white-space:nowrap;transition:all .2s;}
+.frz-btn:hover{background:rgba(0,207,255,.2);}
+.frz-btn.active{background:rgba(255,60,94,.1);color:var(--red);border-color:rgba(255,60,94,.3);}
 .vac-banner{display:none;background:rgba(0,207,255,.06);border:1px solid rgba(0,207,255,.3);border-radius:4px;padding:10px 14px;margin-bottom:9px;align-items:center;justify-content:space-between;gap:10px;}
 .vac-banner.show{display:flex;}
 .vac-info{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--blue);line-height:1.6;}
@@ -382,6 +387,14 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
       <div class="vac-info"><strong>⛱ MODE VACANCES / MALADIE ACTIF</strong><br>Quêtes BYD désactivées. Pas de pénalité si tu complètes le reste.</div>
       <button class="vac-btn" id="vac-main-btn" onclick="toggleVacation()">Désactiver</button>
     </div>
+    <div class="freeze-banner" id="gym-frz-b">
+      <div class="frz-info" id="gym-frz-info">🏋 Gel salle disponible</div>
+      <button class="frz-btn" id="gym-frz-btn" onclick="toggleGymFreeze()">🏋 Geler la salle</button>
+    </div>
+    <div class="freeze-banner" id="frz-b">
+      <div class="frz-info" id="frz-info">❄ JOUR GELÉ — Streak préservé. Aucune pénalité.</div>
+      <button class="frz-btn" id="frz-btn" onclick="toggleFreeze()">❄ Geler ce jour</button>
+    </div>
     <div class="penalty" id="pen-b"><div class="pen-msg" id="pen-m"></div></div>
     <div class="redemption" id="red-b">
       <div class="red-lbl">⚔ quête de rachat obligatoire</div>
@@ -546,7 +559,7 @@ const XRANKS=[
 function getXRank(xp){for(let i=XRANKS.length-1;i>=0;i--)if(xp>=XRANKS[i].min)return XRANKS[i];return XRANKS[0];}
 
 const SEASON_DAYS=90;
-const SAVE_KEY='solo-rising-final-v5';
+const SAVE_KEY='solo-rising-v13';
 const DAYS=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
 const PC={
   islam:  {l:'☽ Islam',  c:'#e8c84a',i:'☽'},
@@ -650,11 +663,16 @@ const QP={
       {id:'istighfar',t:"100x Istighfar",d:"En marchant, en conduisant. Nettoie le cœur.",x:10},
       {id:'isha',t:"Isha à l'heure",d:"La dernière prière. Ne la repousse pas.",x:15},
       {id:'dua',t:"Douaa sincère",d:"Parle à Allah directement. Pas de formule — des mots vrais.",x:10},
+      {id:'sunna-act',t:"Applique 1 Sunna du Prophète ﷺ",d:"Une Sunna concrète aujourd'hui. Pas en théorie.",x:20},
+      {id:'mosque',t:"Prie une salat en jama'a",d:"La mosquée multiplie la récompense. Fais l'effort.",x:25},
+      {id:'coran-ecoute',t:"Écoute 15 min de Coran",d:"Sheikhs reconnus. Écoute avec présence.",x:10},
+      {id:'sadaqa',t:"Donne une sadaqa aujourd'hui",d:"Peu importe le montant. L'intention compte.",x:15},
     ],
     B:[
-      {id:'quran3',t:"3 pages de Coran avec sens",d:"Rang B — plus de volume, même exigence de compréhension.",x:35,ev:1},
-      {id:'sunna',t:"Applique 1 Sunna aujourd'hui",d:"Identifie-la, applique-la concrètement. Pas en théorie.",x:25,ev:1},
-      {id:'allah-name',t:"Apprends un nom d'Allah",d:"Sa signification, son usage. Approfondis ta connaissance.",x:20,ev:1},
+      {id:'quran3',t:"3 pages de Coran avec sens",d:"Rang B — plus de volume, même exigence.",x:35,ev:1},
+      {id:'allah-name',t:"Apprends un nom d'Allah",d:"Sa signification, son usage. Approfondis.",x:20,ev:1},
+      {id:'sira',t:"15 min de Sira du Prophète ﷺ",d:"Connais ton Prophète. Sa vie, ses choix.",x:25,ev:1},
+      {id:'tahajjud-prep',t:"Couche-toi tôt pour Tahajjud",d:"Prépare-toi. Demain tu te lèves avant Fajr.",x:15,ev:1},
     ],
     A:[
       {id:'tahajjud',t:"Prie Tahajjud",d:"Rang A — la prière de nuit. Réveille-toi avant Fajr.",x:50,ev:1},
@@ -669,56 +687,77 @@ const QP={
   money:{
     fix:[],
     C:[
+      // TRADING
       {id:'t-ana',t:"1h d'analyse de marché",d:"3 setups identifiés. Système revu. Documenté.",x:30},
-      {id:'t-jour',t:"Journalise une trade d'hier",d:"Pourquoi prise, résultat, leçon.",x:20},
-      {id:'t-exec',t:"1 trade selon ton système",d:"Une seule. Risk respecté. Zéro FOMO.",x:25},
-      {id:'byd-act',t:"1 action commerciale BYD",d:"Qualification, relance ou suivi.",x:30},
+      {id:'t-jour',t:"Journalise une trade d'hier",d:"Pourquoi prise, résultat, leçon. Sans biais.",x:20},
+      {id:'t-exec',t:"1 trade selon ton système",d:"Une seule. Risk respecté. Zéro FOMO. Zéro revanche.",x:25},
+      {id:'t-review',t:"Review tes 5 dernières trades",d:"Patterns de victoires et d'erreurs. Identifie.",x:25},
+      {id:'t-mindset',t:"Lis 1 concept de psychologie trading",d:"Biais cognitifs, émotions. Comprends ta tête.",x:20},
+      {id:'t-setup',t:"Identifie 3 setups pour demain",d:"Préparation = execution. Tu sais déjà avant.",x:20},
+      {id:'t-regles',t:"Relis les règles de ton système",d:"Chaque jour. Pas de dérogation. Pas d'exception.",x:15},
+      // BYD
+      {id:'byd-act',t:"1 action commerciale BYD",d:"Qualification, relance, suivi. Le pipeline avance.",x:30},
       {id:'byd-rev',t:"Analyse tes 3 dernières ventes",d:"Ce qui marche. Ce que tu dupliques.",x:20},
-      {id:'obj-fin',t:"Revois ton objectif mensuel",d:"Chiffre exact. Écart. Ajuste.",x:15},
-      {id:'form',t:"20 min formation sérieuse",d:"Vidéo de qualité, article, livre audio.",x:15},
-      {id:'pipeline',t:"2 prospects BYD identifiés",d:"Nouveaux contacts à qualifier.",x:20},
-      {id:'script',t:"Peaufine ton script de vente",d:"Un argument, une objection, une réponse.",x:20},
+      {id:'byd-pipeline',t:"Ajoute 3 prospects à ton pipeline",d:"Nouveaux contacts qualifiés. Le flux ne s'arrête pas.",x:25},
+      {id:'byd-relance',t:"Relance 5 prospects existants",d:"Suivi actif. Les ventes se font dans les relances.",x:25},
+      {id:'byd-objection',t:"Prépare 3 réponses aux objections",d:"Prix, délai, concurrent. T'as une réponse à tout.",x:20},
+      {id:'byd-script',t:"Améliore ton script de vente",d:"Un argument affûté. Une phrase qui convainc mieux.",x:20},
+      {id:'byd-top',t:"Analyse ton meilleur mois BYD",d:"Qu'est-ce qui a marché ? Duplique-le ce mois.",x:20},
+      // MINDSET FINANCIER
+      {id:'obj-fin',t:"Revois ton objectif mensuel",d:"Chiffre exact. Écart actuel. Ajuste ta stratégie.",x:15},
+      {id:'form',t:"20 min de formation sérieuse",d:"Trading, vente, business, investissement. Qualité.",x:15},
+      {id:'bilan-fin',t:"Bilan financier de la semaine",d:"Rentrées, sorties, progression vs objectif 10k€.",x:20},
+      {id:'invest-idee',t:"Identifie 1 opportunité d'investissement",d:"Immobilier, actions, crypto, business. Réfléchis.",x:20},
+      {id:'rich-content',t:"Écoute 1 podcast sur la richesse",d:"Personnes qui ont réussi. Extrais 1 leçon concrète.",x:15},
+      {id:'epargne',t:"Calcule ton taux d'épargne du mois",d:"Combien tu gardes sur ce que tu gagnes ? Vise 30%+.",x:15},
     ],
     B:[
       {id:'byd5',t:"5 actions commerciales BYD",d:"Rang B — le standard monte. 5 mouvements minimum.",x:50,ev:1},
-      {id:'sys-review',t:"Revois ton système de trading",d:"Rang B — teste, ajuste, documente. Évolue.",x:40,ev:1},
-      {id:'risk-calc',t:"Calcule ton risk/reward sur 10 trades",d:"Rang B — les chiffres ne mentent pas.",x:35,ev:1},
+      {id:'sys-review',t:"Revois ton système de trading complet",d:"Rang B — backteste, ajuste, documente. Évolue.",x:40,ev:1},
+      {id:'risk-calc',t:"Calcule ton risk/reward sur 10 trades",d:"Rang B — les chiffres ne mentent pas. Regarde-les.",x:35,ev:1},
+      {id:'revenue-stream',t:"Identifie 1 revenu passif possible",d:"Rang B — pense au-delà du salaire. Qu'est-ce que tu peux créer ?",x:30,ev:1},
+      {id:'byd-elite',t:"Analyse le top vendeur de ta concession",d:"Rang B — qu'est-ce qu'il fait différemment ? Apprends.",x:25,ev:1},
     ],
     A:[
       {id:'byd10',t:"10 actions commerciales BYD",d:"Rang A — volume et qualité. Les deux.",x:70,ev:1},
-      {id:'rev-stream',t:"Identifie une source de revenu annexe",d:"Rang A — diversifie. Trading + ventes + quoi d'autre ?",x:50,ev:1},
       {id:'trade-sys2',t:"Backteste ton système sur 20 trades",d:"Rang A — données réelles. Pas des impressions.",x:55,ev:1},
+      {id:'patrimoine',t:"Fais le point sur ton patrimoine",d:"Rang A — actifs, passifs, objectif net worth. Connais tes chiffres.",x:40,ev:1},
     ],
     S:[
-      {id:'invest',t:"Pose 1 action d'investissement long terme",d:"Rang S — immobilier, ETF, crypto. Pense à 10 ans.",x:80,ev:1},
-      {id:'mentor-other',t:"Partage 1 connaissance business",d:"Rang S — tu sais assez pour enseigner. Un frère, un proche.",x:60,ev:1},
+      {id:'invest',t:"Pose 1 action d'investissement long terme",d:"Rang S — immobilier, ETF, business. Pense à 10 ans.",x:80,ev:1},
+      {id:'mentor-other',t:"Partage 1 connaissance business",d:"Rang S — tu sais assez pour enseigner. Partage.",x:60,ev:1},
     ],
   },
   sport:{
-    fix_always:[
-      {id:'10k',t:"10 000 pas",d:"Marche active. Compte réel. Pas de dérogation.",x:20,f:1},
-      {id:'water',t:"2L d'eau minimum",d:"Hydratation = performance + peau + énergie.",x:10,f:1},
-    ],
+    fix_always:[],
     fix_salle:[
       {id:'seance',t:"Séance du jour — présence totale",d:"Tu connais ta séance. Exécute. Chaque rep avec intention.",x:35,f:1,tG:1},
       {id:'creatine',t:"Créatine 5g",d:"Chaque jour de salle. Sans exception.",x:5,f:1},
       {id:'falim',t:"Falim 20 min",d:"Mâchoire renforcée. Routine constante.",x:5,f:1},
     ],
     C:[
+      {id:'10k',t:"10 000 pas",d:"Marche active. Compte réel.",x:20},
+      {id:'water',t:"2L d'eau minimum",d:"Hydratation = performance + peau + énergie.",x:10},
       {id:'stretch',t:"10 min étirements post-séance",d:"Le corps mérite d'être entretenu.",x:10},
       {id:'warmup',t:"Échauffement complet",d:"5-10 min avant. Prévenir vaut mieux que guérir.",x:8},
       {id:'pose',t:"Couché avant 23h",d:"Le muscle se reconstruit la nuit.",x:10},
       {id:'pr',t:"Bats un record aujourd'hui",d:"Un exercice, un poids ou une rep de plus.",x:15},
+      {id:'marche-active',t:"Marche 30 min en dehors",d:"Pas juste des pas. Une vraie marche, tête libre.",x:15},
+      {id:'recup',t:"Récupération active ce soir",d:"Étirements, foam roller ou bain froid.",x:10},
+      {id:'form-check',t:"Corrige ta technique sur 1 exercice",d:"Filme-toi ou concentre-toi. La forme prime le poids.",x:10},
+      {id:'no-lift-excuse',t:"Séance même si t'as pas envie",d:"Le mental se forge ici. Tu y vas et tu frappes fort.",x:20},
+      {id:'cardio',t:"20 min de cardio",d:"Course, vélo, rameur. Cœur en forme = longévité.",x:15},
     ],
     B:[
-      {id:'supersets',t:"Séance en supersets",d:"Rang B — intensité supérieure. Moins de repos, plus de volume.",x:40,ev:1},
+      {id:'supersets',t:"Séance en supersets",d:"Rang B — intensité supérieure. Moins de repos.",x:40,ev:1},
       {id:'prog-track',t:"Note ta progression sur tous les exercices",d:"Rang B — tu trackés. Les chiffres parlent.",x:25,ev:1},
-      {id:'15k',t:"15 000 pas aujourd'hui",d:"Rang B — le standard monte. 50% de plus.",x:30,ev:1},
+      {id:'15k',t:"15 000 pas aujourd'hui",d:"Rang B — le standard monte.",x:30,ev:1},
+      {id:'sleep-track',t:"8h de sommeil — vérifie avec ton téléphone",d:"Rang B — tu mesures. Pas juste tu espères.",x:20,ev:1},
     ],
     A:[
-      {id:'periodisation',t:"Séance avec périodisation",d:"Rang A — programme structuré. Pas de l'improvisation.",x:50,ev:1},
-      {id:'deload',t:"Semaine de décharge intelligente",d:"Rang A — le repos fait partie du programme. Récupère bien.",x:30,ev:1},
-      {id:'20k',t:"20 000 pas aujourd'hui",d:"Rang A — marche sérieuse. Corps en mouvement constant.",x:40,ev:1},
+      {id:'periodisation',t:"Séance avec périodisation",d:"Rang A — programme structuré. Pas d'improvisation.",x:50,ev:1},
+      {id:'20k',t:"20 000 pas aujourd'hui",d:"Rang A — marche sérieuse.",x:40,ev:1},
+      {id:'cold-shower',t:"Douche froide ce matin",d:"Rang A — test mental, circulation, récupération.",x:25,ev:1},
     ],
     S:[
       {id:'elite-train',t:"Séance de préparation athlète",d:"Rang S — plyométrie, explosivité, technique parfaite.",x:60,ev:1},
@@ -733,21 +772,25 @@ const QP={
     ],
     certdri:[{id:'certdri',t:"Certain DRI",d:"Routine hygiène du jour.",x:5,f:1}],
     C:[
-      {id:'protein',t:"Protéines à chaque repas",d:"Poulet, œufs, thon, légumineuses.",x:20},
+      {id:'protein',t:"Protéines à chaque repas",d:"Poulet, œufs, thon, légumineuses. Alimente le muscle.",x:20},
       {id:'veggie',t:"Un légume vert",d:"Brocoli, épinards, courgette. Micronutriments.",x:10},
       {id:'sleep8',t:"8h de sommeil cette nuit",d:"Le corps reconstruit tout la nuit.",x:20},
       {id:'no-junk',t:"Zéro ultra-transformé",d:"Un jour propre. Vrai aliment.",x:15},
       {id:'meal-prep',t:"Prépare ton repas principal",d:"Tu contrôles ce que tu mets dans ton corps.",x:10},
       {id:'no-grigno',t:"Zéro grignotage",d:"Discipline alimentaire = discipline mentale.",x:10},
+      {id:'eau-matin',t:"Bois 500ml d'eau au réveil",d:"Hydrate-toi avant tout. Corps relancé.",x:8},
+      {id:'no-ecran-manger',t:"Mange sans écran",d:"Pleine conscience alimentaire. Tu digères mieux.",x:8},
+      {id:'repas-complet',t:"3 repas complets aujourd'hui",d:"Pas de saut de repas. Carburant constant.",x:10},
+      {id:'no-fast-food',t:"Zéro fast food aujourd'hui",d:"Un jour. Tu peux.",x:10},
     ],
     B:[
       {id:'macros',t:"Trace tes macros aujourd'hui",d:"Rang B — tu sais exactement ce que tu manges.",x:30,ev:1},
-      {id:'creatine-off',t:"Créatine 5g même hors salle",d:"Rang B — consistance totale, 7 jours sur 7.",x:10,ev:1},
       {id:'no-sugar3',t:"3ème jour sans sucre ajouté",d:"Rang B — le standard monte. Pas de compromis.",x:25,ev:1},
+      {id:'supplement',t:"Prends tes compléments du jour",d:"Rang B — vitamines, oméga-3, magnésium. Optimise.",x:10,ev:1},
     ],
     A:[
-      {id:'fasting',t:"Jeûne intermittent 16h",d:"Rang A — autophagie, clarté mentale, brûle les graisses.",x:35,ev:1},
-      {id:'cold-shower',t:"Douche froide ce matin",d:"Rang A — test mental, circulation, récupération.",x:25,ev:1},
+      {id:'fasting',t:"Jeûne intermittent 16h",d:"Rang A — autophagie, clarté mentale.",x:35,ev:1},
+      {id:'nutrition-bilan',t:"Bilan nutrition de la semaine",d:"Rang A — ce que t'as bien fait, ce qui manque.",x:25,ev:1},
     ],
     S:[
       {id:'nutrition-plan',t:"Plan nutritionnel de la semaine",d:"Rang S — tu planifies. Pas d'improvisation alimentaire.",x:40,ev:1},
@@ -765,11 +808,18 @@ const QP={
       {id:'no-insult',t:"Zéro insulte aujourd'hui",d:"Discipline verbale = discipline mentale.",x:15},
       {id:'cold-action',t:"Fais 1 chose inconfortable",d:"Celle que tu repousses. Tu la fais aujourd'hui.",x:20},
       {id:'plan-tmrw',t:"Planifie ta journée de demain",d:"3 priorités. Écrites ce soir.",x:10},
+      {id:'no-plainte',t:"Zéro plainte aujourd'hui",d:"Pas de victimisation. Solutions uniquement.",x:15},
+      {id:'visualise',t:"5 min de visualisation",d:"Toi au Rang S. Ta vie dans 5 ans. Ressens-le.",x:10},
+      {id:'journal-mind',t:"Écris 3 lignes sur ta journée",d:"Ce qui s'est passé. Ce que tu retiens.",x:10},
+      {id:'no-neg-talk',t:"Zéro discours négatif sur toi-même",d:"Parle-toi comme à ton meilleur ami.",x:15},
+      {id:'defi-mental',t:"Fais quelque chose qui te fait peur",d:"Appel difficile, conversation dure, décision. Fais-le.",x:25},
+      {id:'desinfo',t:"1h sans réseaux sociaux",d:"Déconnecte intentionnellement. Pas par obligation.",x:10},
     ],
     B:[
       {id:'book5',t:"Lis 5 pages",d:"Rang B — habitude de lecture. Petit mais constant.",x:20,ev:1},
       {id:'no-soc-morning',t:"Téléphone après 10h seulement",d:"Rang B — matin totalement libre.",x:25,ev:1},
       {id:'mentor',t:"Apprends de quelqu'un qui sait",d:"Rang B — pas YouTube. Une vraie personne.",x:25,ev:1},
+      {id:'weekly-review',t:"Review de la semaine",d:"Rang B — ce qui a marché, ce qui a failli. Honnête.",x:20,ev:1},
     ],
     A:[
       {id:'book20',t:"Lis 20 pages",d:"Rang A — volume sérieux. Un livre par mois minimum.",x:35,ev:1},
@@ -880,11 +930,12 @@ function buildDay(dow,S){
   const isSalle=gymDays.includes(dow);
   const isOff=dayOffDays.includes(dow)||S.vacationMode;
   const isCert=certDriDays.includes(dow);
+  const isWeekend=dow===0||dow===6; // no trading sat/sun
   const rank=getXRank(S.totalXp);
   const yesterday=S.yesterday||[];
   const q=[];
 
-  function addFixed(arr,p){arr.forEach(x=>q.push({...x,p}));}
+  function addFixed(arr,p){arr.forEach(x=>q.push({...x,p,fix:1}));}
   function addRandom(pool,p,n){
     const fresh=shuf(pool.filter(x=>!yesterday.includes(x.id)));
     const fallback=shuf(pool);
@@ -892,44 +943,50 @@ function buildDay(dow,S){
     src.slice(0,n).forEach(x=>q.push({...x,p}));
   }
 
-  // ISLAM
+  // ISLAM — fixed: fajr only. Variable: 2 random
   addFixed(QP.islam.fix,'islam');
   addRandom(getRankPool('islam',rank.id),'islam',2);
 
-  // MONEY
-  const moneyPool=getRankPool('money',rank.id);
-  if(isOff){
-    const light=moneyPool.filter(x=>['form','t-jour','obj-fin'].includes(x.id));
-    const src=light.length>0?light:moneyPool;
+  // MONEY — no fixed. No trading on weekends.
+  if(!isWeekend&&!isOff){
+    addRandom(getRankPool('money',rank.id),'money',2);
+  } else if(!isWeekend){
+    // day off but not weekend: 1 light money quest
+    const light=getRankPool('money',rank.id).filter(x=>['form','obj-fin','bilan'].includes(x.id));
+    const src=light.length>0?light:getRankPool('money',rank.id);
     q.push({...shuf(src)[0],p:'money'});
-  } else {
-    addRandom(moneyPool,'money',2);
   }
+  // weekend: no money quests at all
 
-  // SPORT
-  addFixed(QP.sport.fix_always,'sport');
-  if(isSalle){
+  // SPORT — fixed: creatine+falim on salle days only. Variable: seance + random
+  if(isSalle&&!S.gymFrozen){
+    // Normal salle day: seance+creatine+falim fixed, 2 variable
     addFixed(QP.sport.fix_salle,'sport');
-    addRandom(getRankPool('sport',rank.id),'sport',1);
+    addRandom(getRankPool('sport',rank.id),'sport',2);
+  } else if(isSalle&&S.gymFrozen){
+    // Gym frozen: no salle fixed quests, just 2 sport variables
+    addRandom(getRankPool('sport',rank.id),'sport',2);
+  } else {
+    // Non-salle day: 2 sport variables
+    addRandom(getRankPool('sport',rank.id),'sport',2);
   }
 
-  // FOOD
+  // FOOD — fixed: no-sug, skin, dental, certdri. Variable: 2 random
   addFixed(QP.food.fix,'food');
   if(isCert) addFixed(QP.food.certdri,'food');
   addRandom(getRankPool('food',rank.id),'food',2);
 
-  // MINDSET
+  // MINDSET — fixed: room only. Variable: 2 random
   addFixed(QP.mindset.fix,'mindset');
   addRandom(getRankPool('mindset',rank.id),'mindset',2);
 
-  // SECRET — after 5 consecutive good days (≥80%)
-  // FIX: secret quests do NOT count toward perfect-day check
+  // SECRET — after 5 consecutive good days (fixes only)
   if(S.consGood>=5){
     const sq=getNextSecret(S);
     q.push({...sq,p:'mindset',secret:1});
   }
 
-  // REDEMPTION — shown separately, NOT in main quest list, does NOT affect perfect-day check
+  // REDEMPTION
   if(S.needsRedemption&&!S.redemptionDone){
     const rq=REDEMPTION_Q[Math.floor(Math.random()*REDEMPTION_Q.length)];
     q.push({id:'redemption-q',t:rq.t,d:rq.d,p:'mindset',x:0,redemption:1,noCount:1});
@@ -1002,6 +1059,10 @@ function fresh(){
     journal:[],
     yesterday:[],
     secretUsed:[],
+    freezesLeft:5,
+    dayFrozen:false,
+    gymFreezesLeft:5,
+    gymFrozen:false,
   };
   s.quests=buildDay(1,s);
   return s;
@@ -1025,6 +1086,10 @@ if(s.vacationMode===undefined)s.vacationMode=false;
   if(s.consGood===undefined)s.consGood=0;
   if(s.skipDays===undefined)s.skipDays=0;
   if(s.bonusPaid===undefined)s.bonusPaid=false;
+  if(s.freezesLeft===undefined)s.freezesLeft=5;
+  if(s.dayFrozen===undefined)s.dayFrozen=false;
+  if(s.gymFreezesLeft===undefined)s.gymFreezesLeft=5;
+  if(s.gymFrozen===undefined)s.gymFrozen=false;
   // Remove legacy keys
   delete s.secretDeck;
   return s;
@@ -1032,8 +1097,10 @@ if(s.vacationMode===undefined)s.vacationMode=false;
 
 // FIX: compute "perfect" correctly — ignores secret+redemption quests
 function isPerfect(quests,checked){
-  const countable=quests.filter(q=>!q.noCount&&!q.redemption);
-  return countable.length>0&&countable.every(q=>checked[q.id]);
+  // Streak based on FIXED quests only
+  const fixed=quests.filter(q=>q.fix&&!q.noCount&&!q.redemption);
+  if(fixed.length===0)return false;
+  return fixed.every(q=>checked[q.id]);
 }
 
 // FIX: compute pct correctly — ignores noCount quests
@@ -1046,6 +1113,14 @@ function computePct(quests,checked){
 
 // FIX: advance handles multiple missed days
 function processDay(s){
+  // FREEZE: skip all penalty/streak logic, just log history
+  if(s.dayFrozen){
+    s.history.push({dow:s.dow,dayCount:s.dayCount,seasonDay:s.seasonDay,totalPct:0,pillarPcts:{islam:0,money:0,sport:0,food:0,mindset:0},xpEarned:0,frozen:true});
+    if(s.history.length>180)s.history.shift();
+    s.dayFrozen=false;
+    s.yesterday=s.quests.map(q=>q.id);
+    return;
+  }
   // Save to history
   const pct=computePct(s.quests,s.checked);
   const pp={};
@@ -1145,6 +1220,9 @@ function startNewSeason(){
   S.secretUsed=[];
   S.pendingChest=false;
   S.bonusPaid=false;
+  S.dayFrozen=false;
+  S.gymFrozen=false;
+  S.freezesLeft=5;
   S.quests=buildDay(S.dow,S);
   S.checked={};
   S.sysMsg=pickSM(S.dow);
@@ -1264,6 +1342,43 @@ document.getElementById('day-badge').innerHTML=_isOff?`<div class="off-badge">${
   document.getElementById('st-d').textContent=S.questsDone;
   document.getElementById('st-s').textContent=S.streak;
   document.getElementById('st-x').textContent=S.totalXp.toLocaleString('fr');
+  // Gym freeze banner — only show on salle days
+  const gymFrzB=document.getElementById('gym-frz-b');
+  const gymFrzBtn=document.getElementById('gym-frz-btn');
+  const gymFrzInfo=document.getElementById('gym-frz-info');
+  if(gymFrzB&&gymFrzBtn&&gymFrzInfo){
+    const prof2=S.profile||{};
+    const isGymDay=(prof2.gymDays||[1,2,3,4,5]).includes(S.dow);
+    if(!isGymDay){
+      gymFrzB.style.display='none';
+    } else {
+      gymFrzB.style.display='flex';
+      if(S.gymFrozen){
+        gymFrzInfo.textContent='🏋 SALLE GELÉE — Streak préservé. ('+S.gymFreezesLeft+' restants)';
+        gymFrzBtn.textContent='Annuler';gymFrzBtn.className='frz-btn active';
+      } else {
+        gymFrzInfo.textContent='🏋 Geler la salle — streak préservé. '+S.gymFreezesLeft+' gel(s) restant(s).';
+        gymFrzBtn.textContent='🏋 Geler la salle';gymFrzBtn.className='frz-btn';
+        if(S.gymFreezesLeft<=0){gymFrzBtn.style.opacity='0.4';gymFrzBtn.style.cursor='default';}
+        else{gymFrzBtn.style.opacity='1';gymFrzBtn.style.cursor='pointer';}
+      }
+    }
+  }
+  // Freeze banner
+  const frzB=document.getElementById('frz-b');
+  const frzBtn=document.getElementById('frz-btn');
+  const frzInfo=document.getElementById('frz-info');
+  if(frzB&&frzBtn&&frzInfo){
+    if(S.dayFrozen){
+      frzInfo.textContent='❄ JOUR GELÉ — Streak préservé. Aucune pénalité. ('+S.freezesLeft+' restants)';
+      frzBtn.textContent='Annuler le gel';frzBtn.className='frz-btn active';
+    } else {
+      frzInfo.textContent='❄ Geler ce jour — streak préservé. '+S.freezesLeft+' gel(s) restant(s) cette saison.';
+      frzBtn.textContent='❄ Geler ce jour';frzBtn.className='frz-btn';
+      if(S.freezesLeft<=0){frzBtn.style.opacity='0.4';frzBtn.style.cursor='default';}
+      else{frzBtn.style.opacity='1';frzBtn.style.cursor='pointer';}
+    }
+  }
   // Vacation banner
   document.getElementById('vac-b').classList.toggle('show',S.vacationMode);
   const _vmb=document.getElementById('vac-main-btn');
@@ -1526,7 +1641,7 @@ function nextDay(){
     if(r){S.weeklyRecap=r;S.showRecap=true;}
   } else {S.showRecap=false;}
   S.yesterday=S.quests.map(q=>q.id);
-  S.dow=nextDow;S.dayCount++;S.seasonDay++;S.dailyXp=0;S.bonusPaid=false;
+  S.dow=nextDow;S.dayCount++;S.seasonDay++;S.dailyXp=0;S.bonusPaid=false;S.gymFrozen=false;S.dayFrozen=false;
   if(S.seasonDay>SEASON_DAYS){
     S.seasonEnded=true;
     notif('⬡ SAISON '+S.seasonNum+' TERMINÉE');
@@ -1535,6 +1650,56 @@ function nextDay(){
   S.quests=buildDay(nextDow,S);S.checked={};S.sysMsg=pickSM(nextDow);
   fil='all';document.querySelectorAll('.pil').forEach((el,i)=>el.classList.toggle('on',i===0));
   save();render();window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleGymFreeze(){
+  const SALLE_FIX=['seance','creatine','falim'];
+  if(!S.gymFrozen){
+    // ACTIVER le gel
+    if(S.gymFreezesLeft<=0){notif('⚠ Plus de gels de salle disponibles');return;}
+    S.gymFrozen=true;
+    S.gymFreezesLeft--;
+    // Retirer les quêtes fixes salle sans toucher aux variables ni aux coches
+    S.quests=S.quests.filter(q=>!SALLE_FIX.includes(q.id));
+    // Nettoyer les coches des fixes salle retirées
+    SALLE_FIX.forEach(id=>delete S.checked[id]);
+    save();render();
+    notif('❄ Salle gelée — streak préservé ('+S.gymFreezesLeft+' restants)');
+  } else {
+    // ANNULER le gel — seulement si le gel est vraiment actif
+    if(!S.gymFrozen){notif('⚠ Aucun gel actif');return;}
+    S.gymFrozen=false;
+    S.gymFreezesLeft++;
+    // Remettre les fixes salle dans les quêtes (sans regénérer les variables)
+    const salleFixQuests=QP.sport.fix_salle.map(x=>({...x,p:'sport',fix:1}));
+    salleFixQuests.forEach(q=>{
+      if(!S.quests.find(sq=>sq.id===q.id)) S.quests.unshift(q);
+    });
+    save();render();
+    notif('✓ Gel salle annulé — gel remboursé');
+  }
+}
+
+function toggleFreeze(){
+  if(S.dayFrozen){
+    // ANNULER — seulement si le gel est vraiment actif
+    S.dayFrozen=false;
+    S.freezesLeft++;
+    save();render();
+    notif('✓ Gel annulé — gel remboursé');
+    return;
+  }
+  if(!S.dayFrozen&&arguments[0]==='cancel'){
+    notif('⚠ Aucun gel actif');return;
+  }
+  if(S.freezesLeft<=0){
+    notif('⚠ Plus de gels disponibles cette saison');
+    return;
+  }
+  S.dayFrozen=true;
+  S.freezesLeft--;
+  save();render();
+  notif('❄ Jour gelé — streak préservé ('+S.freezesLeft+' restants)');
 }
 
 function toggleVacation(){
