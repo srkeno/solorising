@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -22,12 +23,13 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .tab.on{background:rgba(123,47,255,.15);border-color:rgba(123,47,255,.3);color:var(--a2);}
 .ndot{position:absolute;top:3px;right:3px;width:6px;height:6px;border-radius:50%;background:var(--red);display:none;}
 .ndot.show{display:block;}
-.hdr{text-align:center;padding:20px 0 12px;}
+.hdr{text-align:center;padding:14px 0 10px;}
 .hdr-lbl{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:6px;color:var(--accent);text-transform:uppercase;margin-bottom:6px;animation:pt 3s ease-in-out infinite;}
 @keyframes pt{0%,100%{opacity:.6}50%{opacity:1}}
 .hdr-title{font-family:'Cinzel',serif;font-size:clamp(26px,7vw,46px);font-weight:900;letter-spacing:4px;background:linear-gradient(135deg,#fff 0%,var(--a2) 40%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;}
 .hdr-sub{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:3px;margin-top:5px;}
-.season-badge{display:inline-flex;align-items:center;gap:8px;margin-top:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--a2);background:rgba(123,47,255,.08);border:1px solid rgba(123,47,255,.2);padding:4px 12px;border-radius:2px;letter-spacing:2px;}
+.hdr-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap;}
+.season-badge{display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--a2);background:rgba(123,47,255,.08);border:1px solid rgba(123,47,255,.2);padding:4px 12px;border-radius:2px;letter-spacing:2px;}
 .save-bar{display:flex;gap:6px;justify-content:center;margin-top:8px;}
 .sbtn{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1.5px;padding:5px 12px;border-radius:2px;cursor:pointer;border:none;text-transform:uppercase;transition:all .2s;}
 .sbtn.ex{background:rgba(0,245,160,.08);color:var(--green);border:1px solid rgba(0,245,160,.2);}
@@ -37,11 +39,18 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .day-info{display:flex;align-items:center;gap:8px;}
 .day-num{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);}
 .off-badge{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--green);background:rgba(0,245,160,.08);border:1px solid rgba(0,245,160,.2);padding:3px 8px;border-radius:2px;letter-spacing:2px;}
-.freeze-banner{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(0,207,255,.05);border:1px solid rgba(0,207,255,.2);border-radius:4px;padding:9px 14px;margin-bottom:9px;}
-.frz-info{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--blue);line-height:1.5;}
-.frz-btn{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:6px 12px;border-radius:2px;cursor:pointer;border:1px solid rgba(0,207,255,.3);background:rgba(0,207,255,.1);color:var(--blue);text-transform:uppercase;white-space:nowrap;transition:all .2s;}
-.frz-btn:hover{background:rgba(0,207,255,.2);}
-.frz-btn.active{background:rgba(255,60,94,.1);color:var(--red);border-color:rgba(255,60,94,.3);}
+.frz-row{display:flex;gap:6px;margin-bottom:9px;}
+.frz-chip{flex:1;display:flex;align-items:center;justify-content:space-between;gap:6px;background:rgba(0,207,255,.04);border:1px solid rgba(0,207,255,.15);border-radius:3px;padding:5px 8px;transition:all .2s;}
+.frz-chip.active{background:rgba(255,60,94,.06);border-color:rgba(255,60,94,.25);}
+.frz-chip.hidden{display:none;}
+.frz-label{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--blue);letter-spacing:1px;line-height:1.3;}
+.frz-chip.active .frz-label{color:var(--red);}
+.frz-count{font-family:'Share Tech Mono',monospace;font-size:9px;font-weight:700;color:var(--blue);background:rgba(0,207,255,.1);border-radius:2px;padding:1px 5px;}
+.frz-chip.active .frz-count{color:var(--red);background:rgba(255,60,94,.1);}
+.frz-btn{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;padding:3px 7px;border-radius:2px;cursor:pointer;border:1px solid rgba(0,207,255,.25);background:transparent;color:var(--blue);text-transform:uppercase;white-space:nowrap;transition:all .2s;}
+.frz-btn:hover{background:rgba(0,207,255,.1);}
+.frz-chip.active .frz-btn{border-color:rgba(255,60,94,.25);color:var(--red);}
+.frz-chip.active .frz-btn:hover{background:rgba(255,60,94,.1);}
 .vac-banner{display:none;background:rgba(0,207,255,.06);border:1px solid rgba(0,207,255,.3);border-radius:4px;padding:10px 14px;margin-bottom:9px;align-items:center;justify-content:space-between;gap:10px;}
 .vac-banner.show{display:flex;}
 .vac-info{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--blue);line-height:1.6;}
@@ -114,7 +123,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .ms.dk{opacity:.3;}
 .ms-c span{color:#00cfff;}.ms-b span{color:#00f5a0;}.ms-a span{color:#e8c84a;}.ms-s span{color:#c77dff;}
 .p-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:5px;color:var(--dim);text-transform:uppercase;margin-bottom:7px;}
-.p-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-bottom:9px;}
+.p-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:9px;}
 .pil{background:rgba(10,8,24,.8);border:1px solid var(--border);border-radius:4px;padding:9px 4px;text-align:center;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
 .pil:hover,.pil.on{border-color:var(--accent);background:rgba(123,47,255,.09);}
 .pil.on::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);}
@@ -122,7 +131,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .pil-nm{font-family:'Share Tech Mono',monospace;font-size:7px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;}
 .pil.on .pil-nm{color:var(--a2);}
 .pil-xp{font-family:'Cinzel',serif;font-size:9px;color:var(--accent);margin-top:2px;font-weight:700;}
-.prog-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:9px;}
+.prog-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:9px;}
 .pp{background:rgba(10,8,24,.7);border:1px solid var(--border);border-radius:4px;padding:8px 5px;text-align:center;}
 .pp-ic{font-size:13px;margin-bottom:2px;}
 .mb{height:3px;background:rgba(255,255,255,.05);border-radius:2px;margin-top:3px;overflow:hidden;}
@@ -312,6 +321,27 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .prof-save:hover{background:rgba(123,47,255,.3);}
 .prof-saved{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--green);margin-left:8px;opacity:0;transition:opacity .3s;}
 .prof-saved.show{opacity:1;}
+.hunter-card{background:linear-gradient(135deg,rgba(123,47,255,.1),rgba(123,47,255,.03));border:1px solid rgba(123,47,255,.3);border-radius:6px;padding:20px;margin-bottom:12px;text-align:center;position:relative;overflow:hidden;}
+.hunter-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);}
+.hc-rank-badge{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--accent);background:rgba(123,47,255,.15);border:1px solid rgba(123,47,255,.3);padding:3px 12px;border-radius:2px;margin-bottom:10px;}
+.hc-name{font-family:'Cinzel',serif;font-size:22px;font-weight:900;letter-spacing:4px;background:linear-gradient(135deg,#fff,var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;}
+.hc-title-eq{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;margin-bottom:14px;min-height:16px;}
+.hc-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.hc-stat{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:3px;padding:8px 4px;}
+.hc-val{font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:var(--a2);}
+.hc-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--dim);letter-spacing:1px;margin-top:3px;}
+.hc-xp-bar-wrap{margin-top:4px;}
+.hc-xp-label{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);margin-bottom:5px;text-align:left;}
+.hc-xp-bar{height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;}
+.hc-xp-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--a2));border-radius:2px;transition:width .6s ease;}
+.hc-titles-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;}
+.hc-title-item{background:rgba(10,8,24,.7);border:1px solid var(--border);border-radius:3px;padding:8px 10px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;}
+.hc-title-item.equipped{border-color:var(--gold);background:rgba(232,200,74,.06);}
+.hc-title-item.locked{opacity:.35;cursor:default;}
+.hc-title-ic{font-size:16px;}
+.hc-title-nm{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--a2);letter-spacing:1px;}
+.hc-title-item.equipped .hc-title-nm{color:var(--gold);}
+.hc-title-cond{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--dim);margin-top:2px;}
 .tt-wrap{background:rgba(10,8,24,.7);border:1px solid var(--border);border-radius:4px;padding:11px 12px;}
 .tt-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;margin-bottom:7px;}
 .tt-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:7px;}
@@ -355,20 +385,20 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .notif.show{transform:translateX(-50%) translateY(0);}
 @keyframes fiu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .page{display:none;}.page.on{display:block;}
-@media(max-width:500px){.p-grid{grid-template-columns:repeat(3,1fr);}.rw2,.tg{grid-template-columns:1fr;}}
+@media(max-width:500px){.p-grid{grid-template-columns:repeat(4,1fr);}.rw2,.tg{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 <div class="w">
   <div class="hdr">
-    <div class="hdr-lbl">⬡ système actif ⬡</div>
     <div class="hdr-title">SOLO RISING</div>
-    <div class="hdr-sub">// rang c → s — discipline absolue //</div>
-    <div class="season-badge" id="season-badge">SAISON 1 — JOUR 1/90</div>
-    <div class="save-bar">
-      <button class="sbtn ex" onclick="exportSave()">↑ Exporter</button>
-      <button class="sbtn im" onclick="triggerImport()">↓ Importer</button>
-      <input type="file" id="imp-file" accept=".json" style="display:none" onchange="importSave(event)">
+    <div class="hdr-row">
+      <div class="season-badge" id="season-badge">SAISON 1 — JOUR 1/90</div>
+      <div class="save-bar">
+        <button class="sbtn ex" onclick="exportSave()">↑ Exporter</button>
+        <button class="sbtn im" onclick="triggerImport()">↓ Importer</button>
+        <input type="file" id="imp-file" accept=".json" style="display:none" onchange="importSave(event)">
+      </div>
     </div>
   </div>
   <div class="tabs">
@@ -387,13 +417,21 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
       <div class="vac-info"><strong>⛱ MODE VACANCES / MALADIE ACTIF</strong><br>Quêtes BYD désactivées. Pas de pénalité si tu complètes le reste.</div>
       <button class="vac-btn" id="vac-main-btn" onclick="toggleVacation()">Désactiver</button>
     </div>
-    <div class="freeze-banner" id="gym-frz-b">
-      <div class="frz-info" id="gym-frz-info">🏋 Gel salle disponible</div>
-      <button class="frz-btn" id="gym-frz-btn" onclick="toggleGymFreeze()">🏋 Geler la salle</button>
-    </div>
-    <div class="freeze-banner" id="frz-b">
-      <div class="frz-info" id="frz-info">❄ JOUR GELÉ — Streak préservé. Aucune pénalité.</div>
-      <button class="frz-btn" id="frz-btn" onclick="toggleFreeze()">❄ Geler ce jour</button>
+    <div class="frz-row">
+      <div class="frz-chip" id="gym-frz-b">
+        <div>
+          <div class="frz-label" id="gym-frz-info">🏋 SALLE</div>
+        </div>
+        <span class="frz-count" id="gym-frz-count">5</span>
+        <button class="frz-btn" id="gym-frz-btn" onclick="toggleGymFreeze()">Geler</button>
+      </div>
+      <div class="frz-chip" id="frz-b">
+        <div>
+          <div class="frz-label" id="frz-info">❄ JOURNÉE</div>
+        </div>
+        <span class="frz-count" id="frz-count">5</span>
+        <button class="frz-btn" id="frz-btn" onclick="toggleFreeze()">Geler</button>
+      </div>
     </div>
     <div class="penalty" id="pen-b"><div class="pen-msg" id="pen-m"></div></div>
     <div class="redemption" id="red-b">
@@ -411,10 +449,6 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
       <button class="seb-btn" onclick="startNewSeason()">Démarrer la Saison suivante</button>
     </div>
     <div id="weekly-recap"></div>
-    <div class="rank-row">
-      <div class="rcard"><div class="rc-lbl">Rang actuel</div><div class="rc-badge c" id="cb">C</div><div class="rc-sub" id="csub">Chasseur confirmé</div><div class="cur-tdsp" id="ctd"></div></div>
-      <div class="rcard"><div class="rc-lbl">Objectif</div><div class="rc-badge goal">S</div><div class="rc-sub">Rang absolu · 2–4 ans</div></div>
-    </div>
     <div class="xp-card">
       <div class="xp-top"><div><div class="xp-lbl">Progression</div><div class="xp-rn" id="xprn">RANG C</div></div><div class="xp-r"><div class="xp-nums" id="xpn">0 XP</div><div class="xp-nxt" id="xpnxt">→ Rang B</div></div></div>
       <div class="xp-bg"><div class="xp-fill" id="xpf" style="width:0%"></div></div>
@@ -428,6 +462,8 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
       <div class="pil" onclick="fp('sport',this)"><div class="pil-ic">⚡</div><div class="pil-nm">Sport</div><div class="pil-xp" id="px-sport">0</div></div>
       <div class="pil" onclick="fp('food',this)"><div class="pil-ic">◉</div><div class="pil-nm">Santé</div><div class="pil-xp" id="px-food">0</div></div>
       <div class="pil" onclick="fp('mindset',this)"><div class="pil-ic">▲</div><div class="pil-nm">Mindset</div><div class="pil-xp" id="px-mindset">0</div></div>
+      <div class="pil" onclick="fp('learn',this)"><div class="pil-ic">📚</div><div class="pil-nm">Appren.</div><div class="pil-xp" id="px-learn">0</div></div>
+      <div class="pil" onclick="fp('social',this)"><div class="pil-ic">🤝</div><div class="pil-nm">Relations</div><div class="pil-xp" id="px-social">0</div></div>
     </div>
     <div class="prog-grid" id="prog-grid"></div>
     <div class="chest-banner" id="chest-b" onclick="openChest()"><div class="chest-ic">🎁</div><div class="chest-tit">COFFRE DISPONIBLE</div><div class="chest-sub">APPUIE POUR OUVRIR</div></div>
@@ -475,22 +511,29 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
   </div>
   <!-- PROFILE -->
   <div id="page-profile" class="page">
-    <div class="prof-section">
-      <div class="prof-hdr">Routine</div>
-      <div class="prof-item"><div class="prof-item-label">Jours de salle</div><div class="prof-toggle" id="gym-tog"></div></div>
-      <div class="prof-item"><div class="prof-item-label">Certain DRI (déodorant) — jours</div><div class="prof-toggle" id="dri-tog"></div></div>
-      <div class="prof-item"><div class="prof-item-label">Jour off travail</div><div class="prof-toggle" id="off-tog"></div></div>
-      <div class="prof-item"><div class="prof-item-label">Objectif de pas</div><input class="prof-input" type="number" id="steps-inp" placeholder="10000"></div>
-      <div class="prof-item" style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-        <div>
-          <div class="prof-item-label" style="margin-bottom:3px">Mode vacances / maladie</div>
-          <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);line-height:1.5">Désactive les quêtes BYD.<br>Aucune pénalité si le reste est complété.</div>
-        </div>
-        <button class="vac-btn" id="vac-prof-btn" onclick="toggleVacation()" style="flex-shrink:0">—</button>
+    <!-- CARTE DU CHASSEUR -->
+    <div class="hunter-card">
+      <div class="hc-rank-badge" id="hc-rank">RANG C</div>
+      <div class="hc-name">SOLO RISING</div>
+      <div class="hc-title-eq" id="hc-title">— Aucun titre équipé —</div>
+      <div class="hc-stats">
+        <div class="hc-stat"><div class="hc-val" id="hc-xp">0</div><div class="hc-lbl">XP Total</div></div>
+        <div class="hc-stat"><div class="hc-val" id="hc-streak">0</div><div class="hc-lbl">Streak</div></div>
+        <div class="hc-stat"><div class="hc-val" id="hc-days">0</div><div class="hc-lbl">Jours actifs</div></div>
+        <div class="hc-stat"><div class="hc-val" id="hc-gym">0</div><div class="hc-lbl">Séances</div></div>
       </div>
-      <button class="prof-save" onclick="saveProfile()">Sauvegarder <span class="prof-saved" id="psaved">✓</span></button>
+      <div class="hc-xp-bar-wrap">
+        <div class="hc-xp-label"><span id="hc-xp-cur">0</span> XP <span id="hc-xp-next">/ 15 000 pour Rang B</span></div>
+        <div class="hc-xp-bar"><div class="hc-xp-fill" id="hc-xp-fill"></div></div>
+      </div>
+    </div>
+    <!-- TITRES -->
+    <div class="prof-section">
+      <div class="prof-hdr">Titres débloqués</div>
+      <div id="hc-titles-grid"></div>
     </div>
     <div class="divider"></div>
+    <!-- TRACKER TRADING -->
     <div class="prof-section">
       <div class="prof-hdr">Tracker Trading</div>
       <div class="tt-wrap">
@@ -510,6 +553,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
       </div>
     </div>
     <div class="divider"></div>
+    <!-- SAUVEGARDE -->
     <div class="prof-section">
       <div class="prof-hdr">Sauvegarde</div>
       <div class="prof-item">
@@ -518,7 +562,7 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
           <button class="sbtn ex" style="flex:1;padding:10px" onclick="exportSave()">↑ Exporter (.json)</button>
           <button class="sbtn im" style="flex:1;padding:10px" onclick="triggerImport()">↓ Importer</button>
         </div>
-        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);margin-top:7px;line-height:1.6">Exporte chaque dimanche. Garde le fichier dans ton cloud.<br>Importe sur n'importe quel appareil.</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);margin-top:7px;line-height:1.6">Exporte chaque dimanche. Garde le fichier dans ton cloud.</div>
       </div>
     </div>
   </div>
@@ -559,14 +603,16 @@ const XRANKS=[
 function getXRank(xp){for(let i=XRANKS.length-1;i>=0;i--)if(xp>=XRANKS[i].min)return XRANKS[i];return XRANKS[0];}
 
 const SEASON_DAYS=90;
-const SAVE_KEY='solo-rising-v13';
+const SAVE_KEY='solo-rising-v25';
 const DAYS=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
 const PC={
-  islam:  {l:'☽ Islam',  c:'#e8c84a',i:'☽'},
-  money:  {l:'◈ Money',  c:'#00f5a0',i:'◈'},
-  sport:  {l:'⚡ Sport', c:'#ff3c5e',i:'⚡'},
-  food:   {l:'◉ Santé',  c:'#00cfff',i:'◉'},
-  mindset:{l:'▲ Mindset',c:'#c77dff',i:'▲'},
+  islam:  {l:'☽ Islam',     c:'#e8c84a',i:'☽'},
+  money:  {l:'◈ Money',     c:'#00f5a0',i:'◈'},
+  sport:  {l:'⚡ Sport',    c:'#ff3c5e',i:'⚡'},
+  food:   {l:'◉ Santé',     c:'#00cfff',i:'◉'},
+  mindset:{l:'▲ Mindset',   c:'#c77dff',i:'▲'},
+  learn:  {l:'📚 Apprentissage',c:'#ff9f43',i:'📚'},
+  social: {l:'🤝 Relations',    c:'#fd79a8',i:'🤝'},
 };
 
 // ═══════════════════════════════════════════
@@ -581,20 +627,22 @@ const TIERS=[
   {id:'diamant', name:'Diamant', ic:'💎',col:'#00cfff',bg:'rgba(0,207,255,.05)',  sub:'Rang S territory'},
   {id:'champion',name:'Champion',ic:'👑',col:'#c77dff',bg:'rgba(199,125,255,.07)',sub:'Chasseur absolu'},
 ];
+const _RB=[{slot:5,ic:'🎽',name:'Tenue de sport',desc:"Une tenue complete pour la salle. Tu t'habilles comme tu performes."},{slot:4,ic:'🍜',name:'Resto asiatique',desc:"Un bon resto asiatique. Toi et ta copine ou un frere."},{slot:3,ic:'💈',name:'Barbier premium',desc:"Un vrai barbier. Coupe + rasage. Tu sors impeccable."},{slot:2,ic:'🕹',name:'Session gaming',desc:"Une soiree jeux video. Tu as merite de decompresser."},{slot:1,ic:'🧴',name:'Produit soin',desc:"Un produit skincare ou parfum que tu voulais tester."}];
+const _RA=[{slot:5,ic:'👟',name:'Sneakers',desc:"Pas les plus cheres - celles que tu voulais vraiment."},{slot:4,ic:'🍱',name:'Bon resto',desc:"Un restaurant un cran au-dessus. Toi et ta copine."},{slot:3,ic:'🕶',name:'Lunettes de soleil',desc:"Une paire qui te va. Style discret mais present."},{slot:2,ic:'🏋',name:'Accessoire salle',desc:"Straps, ceinture ou gants. Un accessoire qui ameliore tes seances."},{slot:1,ic:'🎮',name:'Jeu video',desc:"Ce jeu que tu voulais depuis longtemps. Commande-le."}];
 const REWARDS={
   bronze:[
-    {slot:5,cond:'Streak 3 jours',        check:S=>S.streak>=3,       ic:'💈',name:'Séance barbier premium',   desc:"Un vrai barbier. Coupe + rasage. Tu sors impeccable."},
-    {slot:4,cond:'21 jours actifs',        check:S=>S.dayCount>=21,    ic:'🍕',name:'Soirée pizza',             desc:"Pizza + film + canapé. Zéro culpabilité. T'as bossé."},
-    {slot:3,cond:'200 XP total',           check:S=>S.totalXp>=200,    ic:'☕',name:'Café + pâtisserie',        desc:"Un bon café dans un endroit que t'aimes. Petit plaisir mérité."},
-    {slot:2,cond:'50 quêtes validées',     check:S=>S.questsDone>=50,  ic:'🎬',name:'Soirée cinéma',            desc:"Cinéma + snacks. Seul ou accompagné. Déconnecte."},
-    {slot:1,cond:'Streak 7 jours',         check:S=>S.streak>=7,       ic:'🧴',name:'Produit soin',             desc:"Un produit skincare que tu voulais tester. Investis dans toi."},
+    {slot:5,cond:'Streak 3 jours',        check:S=>S.streak>=3,       ic:'🎁',name:'???',desc:'Tu le decouvres en le debloquant.'},
+    {slot:4,cond:'21 jours actifs',        check:S=>S.dayCount>=21,    ic:'🎁',name:'???',desc:'Tu le decouvres en le debloquant.'},
+    {slot:3,cond:'200 XP total',           check:S=>S.totalXp>=200,    ic:'🎁',name:'???',desc:'Tu le decouvres en le debloquant.'},
+    {slot:2,cond:'50 quetes validees',     check:S=>S.questsDone>=50,  ic:'🎁',name:'???',desc:'Tu le decouvres en le debloquant.'},
+    {slot:1,cond:'Streak 7 jours',         check:S=>S.streak>=7,       ic:'🎁',name:'???',desc:'Tu le decouvres en le debloquant.'},
   ],
   argent:[
-    {slot:5,cond:'500 XP total',           check:S=>S.totalXp>=500,    ic:'🏋',name:'Accessoire de salle',     desc:"Straps, ceinture ou gants de qualité. Un accessoire qui améliore tes séances."},
-    {slot:4,cond:'45 jours actifs',        check:S=>S.dayCount>=45,    ic:'🍱',name:'Bon resto',               desc:"Un restaurant un cran au-dessus de l'habitude. Toi et ta copine."},
-    {slot:3,cond:'Streak 14 jours',        check:S=>S.streak>=14,      ic:'🕶',name:'Lunettes de soleil',      desc:"Une paire qui te va. Style discret mais présent."},
-    {slot:2,cond:'100 quêtes validées',    check:S=>S.questsDone>=100, ic:'👕',name:'Nouvelle tenue',           desc:"Un haut et un bas assortis. Simple, propre, stylé."},
-    {slot:1,cond:'1 000 XP total',         check:S=>S.totalXp>=1000,   ic:'🎮',name:'Jeu vidéo',              desc:"Ce jeu que tu voulais depuis longtemps. Commande-le."},
+    {slot:5,cond:'500 XP total',           check:S=>S.totalXp>=500,    ic:'🎁',name:'???',desc:'Tu le decouvres en le debloquant.'},
+    {slot:4,cond:'45 jours actifs',        check:S=>S.dayCount>=45,    ic:'🎁',name:'???',desc:'Tu le decouvres en le debloquant.'},
+    {slot:3,cond:'Streak 14 jours',        check:S=>S.streak>=14,      ic:'🎁',name:'???',desc:'Tu le decouvres en le debloquant.'},
+    {slot:2,cond:'100 quetes validees',    check:S=>S.questsDone>=100, ic:'🎁',name:'???',desc:'Tu le decouvres en le debloquant.'},
+    {slot:1,cond:'1 000 XP total',         check:S=>S.totalXp>=1000,   ic:'🎁',name:'???',desc:'Tu le decouvres en le debloquant.'},
   ],
   or:[
     {slot:5,cond:'2 000 XP total',         check:S=>S.totalXp>=2000,   ic:'🥩',name:'Dîner steakhouse',        desc:"Un vrai repas dans un bon resto viande."},
@@ -693,23 +741,24 @@ const QP={
       {id:'t-exec',t:"1 trade selon ton système",d:"Une seule. Risk respecté. Zéro FOMO. Zéro revanche.",x:25},
       {id:'t-review',t:"Review tes 5 dernières trades",d:"Patterns de victoires et d'erreurs. Identifie.",x:25},
       {id:'t-mindset',t:"Lis 1 concept de psychologie trading",d:"Biais cognitifs, émotions. Comprends ta tête.",x:20},
-      {id:'t-setup',t:"Identifie 3 setups pour demain",d:"Préparation = execution. Tu sais déjà avant.",x:20},
+      {id:'t-setup',t:"Identifie 3 setups pour demain",d:"Préparation = exécution. Tu sais déjà avant.",x:20},
       {id:'t-regles',t:"Relis les règles de ton système",d:"Chaque jour. Pas de dérogation. Pas d'exception.",x:15},
-      // BYD
-      {id:'byd-act',t:"1 action commerciale BYD",d:"Qualification, relance, suivi. Le pipeline avance.",x:30},
-      {id:'byd-rev',t:"Analyse tes 3 dernières ventes",d:"Ce qui marche. Ce que tu dupliques.",x:20},
-      {id:'byd-pipeline',t:"Ajoute 3 prospects à ton pipeline",d:"Nouveaux contacts qualifiés. Le flux ne s'arrête pas.",x:25},
-      {id:'byd-relance',t:"Relance 5 prospects existants",d:"Suivi actif. Les ventes se font dans les relances.",x:25},
-      {id:'byd-objection',t:"Prépare 3 réponses aux objections",d:"Prix, délai, concurrent. T'as une réponse à tout.",x:20},
-      {id:'byd-script',t:"Améliore ton script de vente",d:"Un argument affûté. Une phrase qui convainc mieux.",x:20},
-      {id:'byd-top',t:"Analyse ton meilleur mois BYD",d:"Qu'est-ce qui a marché ? Duplique-le ce mois.",x:20},
+      // VENTE AUTOMOBILE
+      {id:'auto-prospect',t:"Prospecte 3 nouveaux clients",d:"Appels, messages, contacts. Le pipeline se remplit.",x:30},
+      {id:'auto-relance',t:"Relance 5 prospects existants",d:"Les ventes se font dans les relances. Suis.",x:25},
+      {id:'auto-vente',t:"Analyse ta dernière vente",d:"Ce qui a convaincu. Ce que tu dupliques.",x:20},
+      {id:'auto-objection',t:"Prépare 3 réponses aux objections",d:"Prix, délai, concurrent. T'as une réponse à tout.",x:20},
+      {id:'auto-script',t:"Améliore ton argumentaire de vente",d:"Un argument affûté. Une phrase qui convainc mieux.",x:20},
+      {id:'auto-connaissance',t:"Apprends 1 feature du véhicule que tu vends",d:"Connais ton produit mieux que quiconque.",x:15},
+      {id:'auto-concurrent',t:"Analyse un concurrent",d:"Points forts, points faibles. Sais pourquoi tu es meilleur.",x:20},
+      {id:'auto-feedback',t:"Demande un retour à un client",d:"Pourquoi t'ont-ils choisi ? Écoute vraiment.",x:20},
+      {id:'auto-objectif',t:"Fixe ton objectif de ventes du mois",d:"Chiffre exact. Journalier. Comment tu y arrives.",x:15},
       // MINDSET FINANCIER
-      {id:'obj-fin',t:"Revois ton objectif mensuel",d:"Chiffre exact. Écart actuel. Ajuste ta stratégie.",x:15},
-      {id:'form',t:"20 min de formation sérieuse",d:"Trading, vente, business, investissement. Qualité.",x:15},
-      {id:'bilan-fin',t:"Bilan financier de la semaine",d:"Rentrées, sorties, progression vs objectif 10k€.",x:20},
+      {id:'obj-fin',t:"Revois ton objectif mensuel 10k€",d:"Chiffre exact. Écart actuel. Ajuste ta stratégie.",x:15},
+      {id:'bilan-fin',t:"Bilan financier de la semaine",d:"Rentrées, sorties, progression vs objectif.",x:20},
       {id:'invest-idee',t:"Identifie 1 opportunité d'investissement",d:"Immobilier, actions, crypto, business. Réfléchis.",x:20},
       {id:'rich-content',t:"Écoute 1 podcast sur la richesse",d:"Personnes qui ont réussi. Extrais 1 leçon concrète.",x:15},
-      {id:'epargne',t:"Calcule ton taux d'épargne du mois",d:"Combien tu gardes sur ce que tu gagnes ? Vise 30%+.",x:15},
+      {id:'epargne',t:"Calcule ton taux d'épargne du mois",d:"Combien tu gardes ? Vise 30%+.",x:15},
     ],
     B:[
       {id:'byd5',t:"5 actions commerciales BYD",d:"Rang B — le standard monte. 5 mouvements minimum.",x:50,ev:1},
@@ -831,6 +880,86 @@ const QP={
       {id:'stoic',t:"Applique 1 principe stoïcien aujourd'hui",d:"Rang S — philosophie pratique. Pas de la théorie.",x:40,ev:1},
     ],
   },
+  learn:{
+    fix:[],
+    C:[
+      // ANGLAIS — oral focus
+      {id:'en-speak',t:"Parle anglais 10 min",d:"Avec quelqu'un, seul à voix haute ou via app. L'oral s'améliore en parlant.",x:20},
+      {id:'en-podcast',t:"Écoute un podcast en anglais",d:"Sans sous-titres. Comprends le maximum.",x:15},
+      {id:'en-video',t:"Regarde une vidéo en anglais",d:"YouTube, documentaire, contenu qui t'intéresse.",x:10},
+      {id:'en-vocab',t:"Apprends 5 mots anglais",d:"Avec contexte. Pas juste la traduction — une phrase.",x:15},
+      {id:'en-write',t:"Écris 5 phrases en anglais",d:"Ton quotidien, tes objectifs. Pense en anglais.",x:15},
+      {id:'en-news',t:"Lis 1 article en anglais",d:"BBC, The Guardian, Bloomberg. Compréhension écrite.",x:15},
+      // NÉERLANDAIS — oral focus
+      {id:'nl-speak',t:"Parle néerlandais 10 min",d:"Avec quelqu'un ou à voix haute. L'oral se forge en parlant.",x:20},
+      {id:'nl-podcast',t:"Écoute un podcast en néerlandais",d:"Sans sous-titres. Force la compréhension.",x:15},
+      {id:'nl-vocab',t:"Apprends 5 mots néerlandais",d:"Avec contexte. Une phrase complète.",x:15},
+      {id:'nl-write',t:"Écris 5 phrases en néerlandais",d:"Ton quotidien en néerlandais. Pense dans la langue.",x:15},
+      // TURC — grammaire et conjugaisons
+      {id:'tr-conjugaison',t:"Apprends 1 conjugaison turque",d:"Un temps verbal. Comprends la règle. Applique-la.",x:20},
+      {id:'tr-vocab',t:"Apprends 10 mots turcs formels",d:"Vocabulaire que tu ne connais pas encore. Enrichis.",x:15},
+      {id:'tr-write',t:"Écris 5 phrases en turc",d:"Grammaire correcte. Pas juste de l'oral transcrit.",x:20},
+      {id:'tr-read',t:"Lis un texte en turc",d:"Article, livre, post. La lecture renforce la grammaire.",x:15},
+      {id:'tr-grammaire',t:"Étudie 1 règle de grammaire turque",d:"Suffixes, temps verbaux, structure de phrase.",x:20},
+      // CULTURE GÉNÉRALE & FORMATION
+      {id:'learn-history',t:"Apprends 1 fait historique important",d:"Comprends le monde en connaissant son histoire.",x:10},
+      {id:'learn-finance',t:"Apprends 1 concept financier",d:"ETF, inflation, effet de levier. Comprends l'argent.",x:20},
+      {id:'learn-psycho',t:"Apprends 1 concept de psychologie",d:"Biais cognitifs, émotions, comportement humain.",x:15},
+      {id:'learn-book',t:"Lis 10 pages d'un livre sérieux",d:"Développement personnel, business, biographie.",x:20},
+      {id:'learn-doc',t:"Regarde un documentaire",d:"Science, histoire, business, nature. Élargis ta vision.",x:15},
+    ],
+    B:[
+      {id:'en-debate',t:"Débat ou discussion en anglais",d:"Rang B — exprime une opinion complexe en anglais.",x:35,ev:1},
+      {id:'nl-article',t:"Lis un article long en néerlandais",d:"Rang B — compréhension approfondie.",x:30,ev:1},
+      {id:'tr-texte-long',t:"Écris 10 phrases en turc",d:"Rang B — paragraphe complet. Grammaire soignée.",x:35,ev:1},
+      {id:'learn-resume',t:"Résume ce que tu as appris cette semaine",d:"Rang B — consolide. Ce que tu sais vraiment.",x:25,ev:1},
+    ],
+    A:[
+      {id:'en-present',t:"Présente quelque chose en anglais",d:"Rang A — explique un sujet complexe. Fluency réelle.",x:50,ev:1},
+      {id:'nl-conversation',t:"Conversation complète en néerlandais",d:"Rang A — 15 min minimum. Sans aide.",x:45,ev:1},
+      {id:'tr-redaction',t:"Écris un texte de 10 lignes en turc",d:"Rang A — grammaire correcte, style soigné.",x:50,ev:1},
+    ],
+    S:[
+      {id:'multilang-day',t:"Journée multilingue",d:"Rang S — utilise tes 3 langues aujourd'hui intentionnellement.",x:70,ev:1},
+      {id:'teach-lang',t:"Enseigne quelque chose dans une autre langue",d:"Rang S — enseigner = maîtriser. Prouve que tu sais.",x:60,ev:1},
+    ],
+  },
+  social:{
+    fix:[],
+    C:[
+      // COUPLE
+      {id:'soc-copine',t:"Moment de qualité avec ta copine",d:"Présent, téléphone rangé. Elle mérite ton attention.",x:20},
+      {id:'soc-ecoute',t:"Écoute vraiment quelqu'un aujourd'hui",d:"Sans préparer ta réponse. Juste écouter.",x:15},
+      {id:'soc-geste',t:"Fais 1 geste attentionné",d:"Un message, un café, une surprise simple. Ça compte.",x:15},
+      // FAMILLE
+      {id:'soc-famille',t:"Appelle un membre de ta famille",d:"Tes parents, tes frères. Prends des nouvelles vraiment.",x:20},
+      {id:'soc-frere',t:"Moment avec un de tes frères",d:"En personne ou appel. Le lien se nourrit.",x:15},
+      // RÉSEAU & AMIS
+      {id:'soc-ami',t:"Contacte un ami proche",d:"Pas juste liker. Un vrai message ou appel.",x:15},
+      {id:'soc-reseau',t:"Ajoute 1 contact professionnel utile",d:"Quelqu'un qui peut t'apprendre ou t'ouvrir des portes.",x:20},
+      {id:'soc-rencontre',t:"Engage une conversation avec quelqu'un de nouveau",d:"Client, voisin, inconnu. Sors de ta bulle.",x:20},
+      // COMMUNICATION & LEADERSHIP
+      {id:'soc-comm',t:"Travaille ta communication",d:"Ton ton, tes mots, ta posture. Les grands leaders s'expriment bien.",x:15},
+      {id:'soc-feedback',t:"Demande un retour honnête à quelqu'un",d:"Sur toi, ton travail, ton comportement. Écoute sans défense.",x:20},
+      {id:'soc-genereux',t:"Sois généreux aujourd'hui",d:"Temps, attention, aide. La générosité crée des liens forts.",x:15},
+      {id:'soc-conflit',t:"Règle une tension en suspens",d:"Un malentendu, une distance. Prends les devants.",x:25},
+      {id:'soc-gratitude-person',t:"Exprime ta gratitude à quelqu'un",d:"Dis-lui ce qu'il représente pour toi. Sincèrement.",x:15},
+      {id:'soc-presence',t:"Sois 100% présent avec les tiens",d:"Pas de téléphone pendant 1h avec quelqu'un que tu aimes.",x:20},
+    ],
+    B:[
+      {id:'soc-date',t:"Organise une sortie avec ta copine",d:"Rang B — planifie. Un vrai moment, pas par défaut.",x:35,ev:1},
+      {id:'soc-mentor-find',t:"Identifie 1 mentor potentiel",d:"Rang B — quelqu'un qui a ce que tu veux. Approche-le.",x:30,ev:1},
+      {id:'soc-groupe',t:"Organise une sortie avec tes proches",d:"Rang B — tu crées les moments. Tu ne les subis pas.",x:30,ev:1},
+    ],
+    A:[
+      {id:'soc-network-event',t:"Participe à un événement networking",d:"Rang A — ton réseau détermine ta valeur sur le marché.",x:50,ev:1},
+      {id:'soc-mentor-talk',t:"Conversation sérieuse avec un mentor",d:"Rang A — apprends de quelqu'un qui a réussi ce que tu veux.",x:45,ev:1},
+    ],
+    S:[
+      {id:'soc-leader',t:"Prends un rôle de leader dans un groupe",d:"Rang S — tu guides, tu inspires. Les autres te suivent.",x:60,ev:1},
+      {id:'soc-impact',t:"Fais quelque chose qui impacte positivement 1 personne",d:"Rang S — ta réussite sert les autres.",x:55,ev:1},
+    ],
+  },
 };
 
 const ALL_SECRET_QUESTS=[
@@ -848,6 +977,22 @@ const ALL_SECRET_QUESTS=[
   {id:'sq12',t:'Couche-toi à 21h',                  d:'Une nuit de récupération maximale.',                              x:70},
   {id:'sq13',t:'Écris tes 3 plus grandes peurs',    d:'Honnêtement. Sur papier.',                                       x:65},
   {id:'sq14',t:'Fais quelque chose de bien en secret',d:"Une bonne action que personne ne verra.",                      x:80},
+  {id:'sq15',t:'Écris une lettre à ta copine',          d:"Ce que tu ressens vraiment. Donne-la ou garde-la.",              x:65},
+  {id:'sq16',t:'Fais une activité avec un frère',        d:"Sortie, sport, repas. Un vrai moment.",                         x:65},
+  {id:'sq17',t:'Désinstalle 1 réseau social 24h',        d:"Supprime l'app. Réinstalle demain. Observe.",                   x:85},
+  {id:'sq18',t:'Apprends 20 mots en turc',               d:"En une séance. Vocabulaire utile. Pas de Google pendant.",      x:75},
+  {id:'sq19',t:'Fais une séance de sport en plein air',  d:"Course, marche intense, sport dehors. Soleil et sueur.",        x:80},
+  {id:'sq20',t:'Prépare tes objectifs de la semaine',    d:"Lundi matin. 3 objectifs clairs. Écris-les.",                   x:60},
+  {id:'sq21',t:"Lis 20 pages d'un livre",               d:"Sans pause. Sans téléphone. 20 pages d'une traite.",            x:80},
+  {id:'sq22',t:'Mange propre toute la journée',          d:"Zéro junk, zéro sucre ajouté, protéines à chaque repas.",       x:70},
+  {id:'sq23',t:'Fais quelque chose que tu repousses',    d:"Cette tâche que t'as dans la tête depuis des jours. Fais-la.",  x:90},
+  {id:'sq24',t:"Écoute quelqu'un sans l'interrompre",  d:"Une conversation complète. Tu écoutes. Vraiment.",              x:60},
+  {id:'sq25',t:'Planifie le mois qui vient',             d:"Objectifs financiers, sportifs, personnels. Vue d'ensemble.",   x:75},
+  {id:'sq26',t:'Passe 1h sans aucun écran',              d:"Ni téléphone, ni TV, ni PC. Juste toi et tes pensées.",         x:85},
+  {id:'sq27',t:'Fais une action pour ta santé financière',d:"Épargne, investis, analyse. 1 mouvement concret.",             x:70},
+  {id:'sq28',t:'Exprime ta gratitude à Allah',           d:"15 min de dhikr et de douaa sincère. Cœur ouvert.",             x:65},
+  {id:'sq29',t:'Identifie tes 3 mauvaises habitudes',    d:"Honnêtement. Écris-les. Comment tu les élimines ?",             x:70},
+  {id:'sq30',t:'Prends une photo de ta progression',     d:"Selfie, note, screenshot. Documente qui tu deviens.",           x:55},
 ];
 
 const ALL_BOSSES=[
@@ -943,45 +1088,65 @@ function buildDay(dow,S){
     src.slice(0,n).forEach(x=>q.push({...x,p}));
   }
 
-  // ISLAM — fixed: fajr only. Variable: 2 random
-  addFixed(QP.islam.fix,'islam');
-  addRandom(getRankPool('islam',rank.id),'islam',2);
+  // MODE VACANCES / MALADIE — zéro quête obligatoire, zéro pénalité
+  if(S.vacationMode){
+    // Juste Fajr en optionnel — pas de streak, pas de pénalité
+    q.push({...QP.islam.fix[0],p:'islam',fix:0,noCount:1,x:10});
+    return q;
+  }
 
-  // MONEY — no fixed. No trading on weekends.
+  // Samedi=6, Dimanche=0 → mode allégé
+  const isSat=dow===6;
+  const isSun=dow===0;
+  // n = nombre de quêtes variables par pilier selon le jour
+  const nVar=isWeekend?1:2;
+
+  // ISLAM — fixed: fajr. Variable: nVar random
+  addFixed(QP.islam.fix,'islam');
+  addRandom(getRankPool('islam',rank.id),'islam',nVar);
+
+  // MONEY — pas le week-end. 1 légère le samedi si jour off. Rien le dimanche.
   if(!isWeekend&&!isOff){
     addRandom(getRankPool('money',rank.id),'money',2);
-  } else if(!isWeekend){
-    // day off but not weekend: 1 light money quest
-    const light=getRankPool('money',rank.id).filter(x=>['form','obj-fin','bilan'].includes(x.id));
+  } else if(!isWeekend&&isOff){
+    const light=getRankPool('money',rank.id).filter(x=>['form','obj-fin','bilan-fin'].includes(x.id));
+    const src=light.length>0?light:getRankPool('money',rank.id);
+    q.push({...shuf(src)[0],p:'money'});
+  } else if(isSat){
+    // Samedi : 1 quête légère money (mindset financier uniquement)
+    const light=getRankPool('money',rank.id).filter(x=>['obj-fin','bilan-fin','rich-content','epargne','invest-idee'].includes(x.id));
     const src=light.length>0?light:getRankPool('money',rank.id);
     q.push({...shuf(src)[0],p:'money'});
   }
-  // weekend: no money quests at all
+  // Dimanche : aucune quête money
 
-  // SPORT — fixed: creatine+falim on salle days only. Variable: seance + random
+  // SPORT — fixes salle + variables allégées le week-end
   if(isSalle&&!S.gymFrozen){
-    // Normal salle day: seance+creatine+falim fixed, 2 variable
     addFixed(QP.sport.fix_salle,'sport');
-    addRandom(getRankPool('sport',rank.id),'sport',2);
+    addRandom(getRankPool('sport',rank.id),'sport',nVar);
   } else if(isSalle&&S.gymFrozen){
-    // Gym frozen: no salle fixed quests, just 2 sport variables
-    addRandom(getRankPool('sport',rank.id),'sport',2);
+    addRandom(getRankPool('sport',rank.id),'sport',nVar);
   } else {
-    // Non-salle day: 2 sport variables
-    addRandom(getRankPool('sport',rank.id),'sport',2);
+    addRandom(getRankPool('sport',rank.id),'sport',nVar);
   }
 
-  // FOOD — fixed: no-sug, skin, dental, certdri. Variable: 2 random
+  // FOOD — fixes toujours. Variables allégées le week-end
   addFixed(QP.food.fix,'food');
   if(isCert) addFixed(QP.food.certdri,'food');
-  addRandom(getRankPool('food',rank.id),'food',2);
+  addRandom(getRankPool('food',rank.id),'food',nVar);
 
-  // MINDSET — fixed: room only. Variable: 2 random
+  // MINDSET — fixe room. Variables allégées le week-end
   addFixed(QP.mindset.fix,'mindset');
-  addRandom(getRankPool('mindset',rank.id),'mindset',2);
+  addRandom(getRankPool('mindset',rank.id),'mindset',nVar);
+
+  // LEARN — allégé le week-end
+  addRandom(getRankPool('learn',rank.id),'learn',nVar);
+
+  // SOCIAL — 1 quête par jour toujours
+  addRandom(getRankPool('social',rank.id),'social',1);
 
   // SECRET — after 5 consecutive good days (fixes only)
-  if(S.consGood>=5){
+  if(S.dayCount%3===0){
     const sq=getNextSecret(S);
     q.push({...sq,p:'mindset',secret:1});
   }
@@ -1001,10 +1166,11 @@ function buildDay(dow,S){
 function computeRecap(history){
   const last7=history.slice(-7);
   if(last7.length<3)return null;
-  const avgPct=last7.reduce((a,h)=>a+h.totalPct,0)/last7.length;
+  const activeDays=last7.filter(h=>!h.frozen);
+  const avgPct=activeDays.length>0?activeDays.reduce((a,h)=>a+h.totalPct,0)/activeDays.length:0;
   const xpWeek=last7.reduce((a,h)=>a+h.xpEarned,0);
   const pillarAvg={};
-  ['islam','money','sport','food','mindset'].forEach(p=>{
+  ['islam','money','sport','food','mindset','learn','social'].forEach(p=>{
     pillarAvg[p]=last7.reduce((a,h)=>a+(h.pillarPcts[p]||0),0)/last7.length;
   });
   const sorted=Object.entries(pillarAvg).sort((a,b)=>b[1]-a[1]);
@@ -1019,7 +1185,7 @@ function computeRecap(history){
 }
 
 function renderRecapCard(r){
-  const bars=['islam','money','sport','food','mindset'].map(p=>{
+  const bars=['islam','money','sport','food','mindset','learn','social'].map(p=>{
     const pc=Math.round(r.pillarAvg[p]||0),c=PC[p];
     return `<div class="rb-item"><div style="font-size:12px;margin-bottom:2px">${c.i}</div><div class="rb-bg"><div class="rb-fill" style="height:${pc}%;background:${c.c}"></div></div><div class="rb-pct">${pc}%</div></div>`;
   }).join('');
@@ -1040,7 +1206,7 @@ function fresh(){
   // Always start Monday dow=1, Day 1
   const s={
     totalXp:0,streak:0,bestStreak:0,questsDone:0,
-    pillarXp:{islam:0,money:0,sport:0,food:0,mindset:0},
+    pillarXp:{islam:0,money:0,sport:0,food:0,mindset:0,learn:0,social:0},
     quests:[],checked:{},
     dow:1,dayCount:1,seasonDay:1,seasonNum:1,
     prevRank:'C',sysMsg:pickSM(1),
@@ -1113,18 +1279,27 @@ function computePct(quests,checked){
 
 // FIX: advance handles multiple missed days
 function processDay(s){
-  // FREEZE: skip all penalty/streak logic, just log history
-  if(s.dayFrozen){
-    s.history.push({dow:s.dow,dayCount:s.dayCount,seasonDay:s.seasonDay,totalPct:0,pillarPcts:{islam:0,money:0,sport:0,food:0,mindset:0},xpEarned:0,frozen:true});
+  // FREEZE ou VACANCES : pas de pénalité, streak préservé
+  if(s.dayFrozen||s.vacationMode){
+    // Log la vraie progression du jour si des quêtes ont été faites
+    const pctV=computePct(s.quests,s.checked);
+    const ppV={};
+    ['islam','money','sport','food','mindset','learn','social'].forEach(p=>{
+      const pt=s.quests.filter(q=>q.p===p&&!q.noCount&&!q.redemption).length;
+      const pd=s.quests.filter(q=>q.p===p&&!q.noCount&&!q.redemption&&s.checked[q.id]).length;
+      ppV[p]=pt>0?pd/pt*100:0;
+    });
+    s.history.push({dow:s.dow,dayCount:s.dayCount,seasonDay:s.seasonDay,totalPct:pctV,pillarPcts:ppV,xpEarned:s.dailyXp,frozen:true});
     if(s.history.length>180)s.history.shift();
     s.dayFrozen=false;
+    // Ne pas reset vacationMode ici — l'utilisateur le désactive manuellement
     s.yesterday=s.quests.map(q=>q.id);
     return;
   }
   // Save to history
   const pct=computePct(s.quests,s.checked);
   const pp={};
-  ['islam','money','sport','food','mindset'].forEach(p=>{
+  ['islam','money','sport','food','mindset','learn','social'].forEach(p=>{
     const pt=s.quests.filter(q=>q.p===p&&!q.noCount&&!q.redemption).length;
     const pd=s.quests.filter(q=>q.p===p&&!q.noCount&&!q.redemption&&s.checked[q.id]).length;
     pp[p]=pt>0?pd/pt*100:0;
@@ -1207,7 +1382,7 @@ function importSave(e){
 function startNewSeason(){
   const rank=getXRank(S.totalXp);
   const pillarAvg={};
-  ['islam','money','sport','food','mindset'].forEach(p=>{
+  ['islam','money','sport','food','mindset','learn','social'].forEach(p=>{
     const days=S.history.filter(h=>h.seasonDay<=S.seasonDay);
     pillarAvg[p]=days.length>0?days.reduce((a,h)=>a+(h.pillarPcts[p]||0),0)/days.length:0;
   });
@@ -1304,13 +1479,8 @@ document.getElementById('day-badge').innerHTML=_isOff?`<div class="off-badge">${
   // Weekly recap
   document.getElementById('weekly-recap').innerHTML=S.showRecap&&S.weeklyRecap?renderRecapCard(S.weeklyRecap):'';
 
-  // Rank card
-  const cb=document.getElementById('cb');
-  cb.textContent=rank.id;cb.style.color=rank.col;cb.style.textShadow=`0 0 30px ${rank.col}88`;
-  cb.className='rc-badge '+rank.id.toLowerCase();
-  document.getElementById('csub').textContent=rank.desc;
+  // Rank card (elements moved to profile page)
   const et=S.equippedTitle?TITLES.find(t=>t.id===S.equippedTitle):null;
-  document.getElementById('ctd').textContent=et?'✦ '+et.nm:'';
 
   // Rank up
   if(S.prevRank!==rank.id){
@@ -1336,7 +1506,7 @@ document.getElementById('day-badge').innerHTML=_isOff?`<div class="off-badge">${
     el.classList.toggle('lit',S.totalXp>=m.min);el.classList.toggle('dk',S.totalXp<m.min);
   });
 
-  ['islam','money','sport','food','mindset'].forEach(p=>{
+  ['islam','money','sport','food','mindset','learn','social'].forEach(p=>{
     const el=document.getElementById('px-'+p);if(el)el.textContent=(S.pillarXp[p]||0)+' XP';
   });
   document.getElementById('st-d').textContent=S.questsDone;
@@ -1349,18 +1519,20 @@ document.getElementById('day-badge').innerHTML=_isOff?`<div class="off-badge">${
   if(gymFrzB&&gymFrzBtn&&gymFrzInfo){
     const prof2=S.profile||{};
     const isGymDay=(prof2.gymDays||[1,2,3,4,5]).includes(S.dow);
+    const gymCnt=document.getElementById('gym-frz-count');
     if(!isGymDay){
-      gymFrzB.style.display='none';
+      gymFrzB.classList.add('hidden');
     } else {
-      gymFrzB.style.display='flex';
+      gymFrzB.classList.remove('hidden');
+      if(gymCnt) gymCnt.textContent=S.gymFreezesLeft;
       if(S.gymFrozen){
-        gymFrzInfo.textContent='🏋 SALLE GELÉE — Streak préservé. ('+S.gymFreezesLeft+' restants)';
-        gymFrzBtn.textContent='Annuler';gymFrzBtn.className='frz-btn active';
+        gymFrzInfo.textContent='🏋 GELÉE';
+        gymFrzBtn.textContent='Annuler';
+        gymFrzB.className='frz-chip active';
       } else {
-        gymFrzInfo.textContent='🏋 Geler la salle — streak préservé. '+S.gymFreezesLeft+' gel(s) restant(s).';
-        gymFrzBtn.textContent='🏋 Geler la salle';gymFrzBtn.className='frz-btn';
-        if(S.gymFreezesLeft<=0){gymFrzBtn.style.opacity='0.4';gymFrzBtn.style.cursor='default';}
-        else{gymFrzBtn.style.opacity='1';gymFrzBtn.style.cursor='pointer';}
+        gymFrzInfo.textContent='🏋 SALLE';
+        gymFrzBtn.textContent='Geler';
+        gymFrzB.className='frz-chip'+(S.gymFreezesLeft<=0?' hidden':'');
       }
     }
   }
@@ -1369,22 +1541,22 @@ document.getElementById('day-badge').innerHTML=_isOff?`<div class="off-badge">${
   const frzBtn=document.getElementById('frz-btn');
   const frzInfo=document.getElementById('frz-info');
   if(frzB&&frzBtn&&frzInfo){
+    const dayCnt=document.getElementById('frz-count');
+    if(dayCnt) dayCnt.textContent=S.freezesLeft;
     if(S.dayFrozen){
-      frzInfo.textContent='❄ JOUR GELÉ — Streak préservé. Aucune pénalité. ('+S.freezesLeft+' restants)';
-      frzBtn.textContent='Annuler le gel';frzBtn.className='frz-btn active';
+      frzInfo.textContent='❄ GELÉE';
+      frzBtn.textContent='Annuler';
+      frzB.className='frz-chip active';
     } else {
-      frzInfo.textContent='❄ Geler ce jour — streak préservé. '+S.freezesLeft+' gel(s) restant(s) cette saison.';
-      frzBtn.textContent='❄ Geler ce jour';frzBtn.className='frz-btn';
-      if(S.freezesLeft<=0){frzBtn.style.opacity='0.4';frzBtn.style.cursor='default';}
-      else{frzBtn.style.opacity='1';frzBtn.style.cursor='pointer';}
+      frzInfo.textContent='❄ JOURNÉE';
+      frzBtn.textContent='Geler';
+      frzB.className='frz-chip'+(S.freezesLeft<=0?' hidden':'');
     }
   }
   // Vacation banner
   document.getElementById('vac-b').classList.toggle('show',S.vacationMode);
   const _vmb=document.getElementById('vac-main-btn');
   if(_vmb)_vmb.textContent=S.vacationMode?'Désactiver':'Activer';
-  const vpb=document.getElementById('vac-prof-btn');
-  if(vpb){vpb.textContent=S.vacationMode?'Désactiver':'Activer';vpb.style.background=S.vacationMode?'rgba(255,60,94,.1)':'rgba(0,207,255,.1)';vpb.style.borderColor=S.vacationMode?'rgba(255,60,94,.3)':'rgba(0,207,255,.3)';vpb.style.color=S.vacationMode?'var(--red)':'var(--blue)';}
   document.getElementById('chest-b').classList.toggle('show',S.pendingChest);
 
   // Secret quest display
@@ -1402,7 +1574,7 @@ document.getElementById('day-badge').innerHTML=_isOff?`<div class="off-badge">${
 
 function renderProg(){
   if(!S.quests)return;
-  document.getElementById('prog-grid').innerHTML=['islam','money','sport','food','mindset'].map(p=>{
+  document.getElementById('prog-grid').innerHTML=['islam','money','sport','food','mindset','learn','social'].map(p=>{
     const countable=S.quests.filter(q=>q.p===p&&!q.noCount&&!q.redemption);
     const tot=countable.length,dn=countable.filter(q=>S.checked[q.id]).length;
     const pc=tot>0?(dn/tot*100):0,c=PC[p];
@@ -1467,6 +1639,8 @@ function renderRewards(){
 function claimR(tierId,slot){
   const tier=TIERS.find(t=>t.id===tierId),r=(REWARDS[tierId]||[]).find(x=>x.slot===slot);
   if(!r||!r.check(S))return;
+  if(tierId==='bronze'){const h=_RB.find(x=>x.slot===slot);if(h){r.ic=h.ic;r.name=h.name;r.desc=h.desc;}}
+  if(tierId==='argent'){const h=_RA.find(x=>x.slot===slot);if(h){r.ic=h.ic;r.name=h.name;r.desc=h.desc;}}
 
   const k=tierId+'_'+slot;if(S.claimedRewards[k])return;
   S.claimedRewards[k]=true;save();
@@ -1487,8 +1661,11 @@ function renderHistory(){
   const el=document.getElementById('hg');
   if(!S.history||!S.history.length){el.innerHTML='<div style="font-family:\'Share Tech Mono\',monospace;font-size:11px;color:var(--dim);text-align:center;padding:28px">Valide ta première journée.</div>';return;}
   el.innerHTML=[...S.history].reverse().slice(0,10).map(h=>{
+    if(h.frozen){
+      return `<div class="hd ms"><div class="hd-top"><div class="hd-day">${DAYS[h.dow]} J${h.dayCount}</div><div class="hd-sc" style="color:var(--dim)">⛱ repos</div></div></div>`;
+    }
     const cls=h.totalPct>=100?'pf':h.totalPct>=60?'pa':'ms',sc=h.totalPct>=100?'var(--green)':h.totalPct>=60?'var(--gold)':'var(--red)';
-    return `<div class="hd ${cls}"><div class="hd-top"><div class="hd-day">${DAYS[h.dow]} J${h.dayCount}</div><div class="hd-sc" style="color:${sc}">${Math.round(h.totalPct)}% · +${h.xpEarned} XP</div></div><div class="hd-bars">${['islam','money','sport','food','mindset'].map(p=>{const pc=h.pillarPcts[p]||0,c=PC[p];return `<div class="hd-bar"><div class="hd-ic">${c.i}</div><div class="hd-bg"><div class="hd-fill" style="height:${pc}%;background:${c.c}"></div></div><div class="hd-pct">${Math.round(pc)}%</div></div>`;}).join('')}</div></div>`;
+    return `<div class="hd ${cls}"><div class="hd-top"><div class="hd-day">${DAYS[h.dow]} J${h.dayCount}</div><div class="hd-sc" style="color:${sc}">${Math.round(h.totalPct)}% · +${h.xpEarned} XP</div></div><div class="hd-bars">${['islam','money','sport','food','mindset','learn','social'].map(p=>{const pc=h.pillarPcts[p]||0,c=PC[p];return `<div class="hd-bar"><div class="hd-ic">${c.i}</div><div class="hd-bg"><div class="hd-fill" style="height:${pc}%;background:${c.c}"></div></div><div class="hd-pct">${Math.round(pc)}%</div></div>`;}).join('')}</div></div>`;
   }).join('');
 }
 
@@ -1506,7 +1683,7 @@ function renderSeasons(){
   if(S.seasons&&S.seasons.length>0){
     [...S.seasons].reverse().forEach(s=>{
       const sr=XRANKS.find(r=>r.id===s.rank)||XRANKS[0];
-      const bars=['islam','money','sport','food','mindset'].map(p=>{const pc=Math.round(s.pillarAvg[p]||0),c=PC[p];return `<div class="sc-bar"><div class="sc-bar-ic">${c.i}</div><div class="sc-bar-bg"><div class="sc-bar-fill" style="height:${pc}%;background:${c.c}"></div></div><div class="sc-bar-pct">${pc}%</div></div>`;}).join('');
+      const bars=['islam','money','sport','food','mindset','learn','social'].map(p=>{const pc=Math.round(s.pillarAvg[p]||0),c=PC[p];return `<div class="sc-bar"><div class="sc-bar-ic">${c.i}</div><div class="sc-bar-bg"><div class="sc-bar-fill" style="height:${pc}%;background:${c.c}"></div></div><div class="sc-bar-pct">${pc}%</div></div>`;}).join('');
       html+=`<div class="season-card"><div class="sc-header"><div class="sc-title">Saison ${s.num}</div><div class="sc-rank" style="color:${sr.col}">${sr.label}</div></div><div class="sc-stats"><div class="sc-stat"><div class="sc-stat-v">${s.days}</div><div class="sc-stat-l">Jours</div></div><div class="sc-stat"><div class="sc-stat-v" style="color:var(--green)">${s.streak}</div><div class="sc-stat-l">Streak</div></div><div class="sc-stat"><div class="sc-stat-v" style="color:var(--gold)">${s.xp.toLocaleString('fr')}</div><div class="sc-stat-l">XP</div></div></div><div class="sc-bars">${bars}</div>${s.equippedTitle?`<div class="sc-title-earned">✦ ${(TITLES.find(t=>t.id===s.equippedTitle)||{nm:'—'}).nm}</div>`:''}</div>`;
     });
   } else html+='<div style="font-family:\'Share Tech Mono\',monospace;font-size:11px;color:var(--dim);text-align:center;padding:20px">Complète la Saison 1 pour voir l\'historique.</div>';
@@ -1520,7 +1697,7 @@ function renderJournal(){
 }
 
 function renderStats(){
-  const pl=['islam','money','sport','food','mindset'],mx=Math.max(...pl.map(p=>S.pillarXp[p]||0),1),sorted=[...pl].sort((a,b)=>(S.pillarXp[b]||0)-(S.pillarXp[a]||0));
+  const pl=['islam','money','sport','food','mindset','learn','social'],mx=Math.max(...pl.map(p=>S.pillarXp[p]||0),1),sorted=[...pl].sort((a,b)=>(S.pillarXp[b]||0)-(S.pillarXp[a]||0));
   document.getElementById('rw2').innerHTML=pl.map(p=>{
     const xp=S.pillarXp[p]||0,pc=Math.round(xp/mx*100),c=PC[p];
     const tag=p===sorted[0]?'s-s':p===sorted[sorted.length-1]?'s-w':'s-m';
@@ -1534,19 +1711,50 @@ function renderStats(){
 
 const DN=['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
 function renderProfile(){
-  const prof=S.profile||{};
-  document.getElementById('gym-tog').innerHTML=DN.map((d,i)=>`<div class="prof-opt ${(prof.gymDays||[]).includes(i)?'on':''}" onclick="toggleDay('gymDays',${i})">${d}</div>`).join('');
-  document.getElementById('dri-tog').innerHTML=DN.map((d,i)=>`<div class="prof-opt ${(prof.certDriDays||[]).includes(i)?'on':''}" onclick="toggleDay('certDriDays',${i})">${d}</div>`).join('');
-  const _offArr=prof.dayOffDays||[1];
-document.getElementById('off-tog').innerHTML=DN.map((d,i)=>`<div class="prof-opt ${_offArr.includes(i)?'on':''}" onclick="toggleDay('dayOffDays',${i})">${d}</div>`).join('');
-  document.getElementById('steps-inp').value=prof.stepsGoal||10000;
   renderTrading();
+  // Hunter card
+  const rank=getXRank(S.totalXp);
+  const next=[{id:'C',min:0,max:15000},{id:'B',min:15000,max:55000},{id:'A',min:55000,max:155000},{id:'S',min:155000,max:155000}].find(r=>r.id===rank.id);
+  const et=S.equippedTitle?TITLES.find(t=>t.id===S.equippedTitle):null;
+  const hcRank=document.getElementById('hc-rank');
+  const hcTitle=document.getElementById('hc-title');
+  const hcXp=document.getElementById('hc-xp');
+  const hcStreak=document.getElementById('hc-streak');
+  const hcDays=document.getElementById('hc-days');
+  const hcGym=document.getElementById('hc-gym');
+  const hcXpCur=document.getElementById('hc-xp-cur');
+  const hcXpNext=document.getElementById('hc-xp-next');
+  const hcXpFill=document.getElementById('hc-xp-fill');
+  const hcTitles=document.getElementById('hc-titles-grid');
+  if(hcRank) hcRank.textContent='RANG '+rank.id;
+  if(hcRank) hcRank.style.color=rank.col;
+  if(hcTitle) hcTitle.textContent=et?'✦ '+et.nm:'— Aucun titre équipé —';
+  if(hcXp) hcXp.textContent=S.totalXp.toLocaleString('fr');
+  if(hcStreak) hcStreak.textContent=S.streak;
+  if(hcDays) hcDays.textContent=S.dayCount;
+  if(hcGym) hcGym.textContent=S.gymCount;
+  if(rank.id!=='S'&&next){
+    const pct=Math.min(100,Math.round((S.totalXp-next.min)/(next.max-next.min)*100));
+    if(hcXpCur) hcXpCur.textContent=S.totalXp.toLocaleString('fr');
+    const nextRankLabel={C:'Rang B',B:'Rang A',A:'Rang S',S:'MAX'}[rank.id]||'';
+    if(hcXpNext) hcXpNext.textContent='/ '+next.max.toLocaleString('fr')+' — '+nextRankLabel;
+    if(hcXpFill) hcXpFill.style.width=pct+'%';
+  }
+  // Titles grid
+  if(hcTitles){
+    const titlesHtml=TITLES.map(t=>{
+      const ul=S.unlockedTitles.includes(t.id),eq=S.equippedTitle===t.id;
+      const cls='hc-title-item'+(eq?' equipped':ul?'':' locked');
+      const click=ul?'onclick="eqT(\'' + t.id + '\')"':'';
+      return '<div class="'+cls+'" '+click+'><div class="hc-title-ic">'+t.ic+'</div><div><div class="hc-title-nm">'+t.nm+'</div><div class="hc-title-cond">'+t.cond+'</div></div></div>';
+    }).join('');
+    hcTitles.innerHTML=titlesHtml;
+  }
 }
 function toggleDay(f,d){if(!S.profile)S.profile={};if(!S.profile[f])S.profile[f]=[];const i=S.profile[f].indexOf(d);if(i>=0)S.profile[f].splice(i,1);else S.profile[f].push(d);renderProfile();}
 
 function saveProfile(){
   if(!S.profile)S.profile={};
-  S.profile.stepsGoal=parseInt(document.getElementById('steps-inp').value)||10000;
   // Ne PAS reconstruire les quêtes en cours de journée
   save();render();
   const ps=document.getElementById('psaved');ps.classList.add('show');setTimeout(()=>ps.classList.remove('show'),2000);
@@ -1704,9 +1912,18 @@ function toggleFreeze(){
 
 function toggleVacation(){
   S.vacationMode=!S.vacationMode;
-  // Ne PAS reconstruire les quêtes en cours de journée
+  if(!S.vacationMode){
+    // En désactivant, reconstruire les quêtes normales
+    const prev=S.checked;
+    S.quests=buildDay(S.dow,S);
+    // Préserver les coches existantes compatibles
+    S.checked={};
+    Object.keys(prev).forEach(k=>{if(S.quests.find(q=>q.id===k))S.checked[k]=prev[k];});
+    // Marquer comme jour gelé pour éviter la pénalité aujourd'hui
+    if(S.freezesLeft>0){S.dayFrozen=true;S.freezesLeft--;}
+  }
   save();render();
-  notif(S.vacationMode?'⛱ Mode vacances activé':'✓ Mode vacances désactivé');
+  notif(S.vacationMode?'⛱ Vacances/Maladie — zéro obligation':'✓ Mode normal — journée gelée automatiquement');
 }
 
 function completeRedemption(){
@@ -1749,5 +1966,6 @@ function notif(msg){
 
 render();
 </script>
+
 </body>
 </html>
