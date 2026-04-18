@@ -39,6 +39,27 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .day-info{display:flex;align-items:center;gap:8px;}
 .day-num{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);}
 .off-badge{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--green);background:rgba(0,245,160,.08);border:1px solid rgba(0,245,160,.2);padding:3px 8px;border-radius:2px;letter-spacing:2px;}
+.dg-banner{background:linear-gradient(135deg,rgba(255,60,94,.08),rgba(123,47,255,.08));border:1px solid rgba(255,60,94,.3);border-radius:6px;padding:14px;margin-bottom:9px;}
+.dg-banner-rank{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--red);margin-bottom:6px;}
+.dg-banner-title{font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;}
+.dg-banner-intro{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);line-height:1.6;margin-bottom:12px;}
+.dg-banner-actions{display:flex;gap:8px;}
+.dg-btn-complete{flex:1;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:8px;border-radius:2px;cursor:pointer;border:1px solid rgba(0,245,160,.3);background:rgba(0,245,160,.1);color:var(--green);text-transform:uppercase;}
+.dg-btn-fail{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:8px 12px;border-radius:2px;cursor:pointer;border:1px solid rgba(255,60,94,.3);background:rgba(255,60,94,.08);color:var(--red);text-transform:uppercase;}
+.dg-entry-banner{background:linear-gradient(135deg,rgba(232,200,74,.08),rgba(123,47,255,.05));border:1px solid rgba(232,200,74,.3);border-radius:6px;padding:14px;margin-bottom:9px;text-align:center;cursor:pointer;}
+.dg-entry-lbl{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--gold);margin-bottom:4px;}
+.dg-entry-sub{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);margin-bottom:10px;}
+.dg-entry-btn{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:8px 20px;border-radius:2px;cursor:pointer;border:1px solid rgba(232,200,74,.4);background:rgba(232,200,74,.1);color:var(--gold);text-transform:uppercase;}
+.dg-reward-ov{position:fixed;inset:0;background:rgba(3,2,10,.95);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px;}
+.dg-reward-box{background:linear-gradient(135deg,rgba(255,60,94,.1),rgba(123,47,255,.1));border:1px solid rgba(255,60,94,.4);border-radius:8px;padding:28px 20px;text-align:center;max-width:340px;width:100%;position:relative;}
+.dg-rw-rank{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--red);margin-bottom:14px;}
+.dg-rw-ic{font-size:48px;margin-bottom:10px;}
+.dg-rw-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--dim);margin-bottom:8px;}
+.dg-rw-name{font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:8px;}
+.dg-rw-desc{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);line-height:1.6;margin-bottom:12px;}
+.dg-rw-xp{font-family:'Cinzel',serif;font-size:18px;color:var(--gold);font-weight:700;margin-bottom:6px;}
+.dg-rw-title{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--a2);letter-spacing:2px;margin-bottom:16px;}
+.dg-rw-cta{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;padding:12px 24px;border-radius:2px;cursor:pointer;border:1px solid rgba(255,60,94,.4);background:rgba(255,60,94,.15);color:var(--red);text-transform:uppercase;width:100%;}
 .frz-row{display:flex;gap:6px;margin-bottom:9px;}
 .frz-chip{flex:1;display:flex;align-items:center;justify-content:space-between;gap:6px;background:rgba(0,207,255,.04);border:1px solid rgba(0,207,255,.15);border-radius:3px;padding:5px 8px;transition:all .2s;}
 .frz-chip.active{background:rgba(255,60,94,.06);border-color:rgba(255,60,94,.25);}
@@ -193,6 +214,13 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .st-l{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--dim);margin-top:3px;text-transform:uppercase;}
 .btn{background:linear-gradient(135deg,var(--accent),#5500cc);border:none;color:#fff;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:3px;padding:12px 20px;border-radius:3px;cursor:pointer;text-transform:uppercase;transition:all .2s;width:100%;margin-top:8px;}
 .btn:hover{opacity:.85;transform:translateY(-1px);box-shadow:0 8px 25px rgba(123,47,255,.35);}
+.mid-bilan{background:linear-gradient(135deg,rgba(232,200,74,.08),rgba(123,47,255,.05));border:1px solid rgba(232,200,74,.3);border-radius:6px;padding:16px;margin-bottom:9px;text-align:center;}
+.mb-title{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--gold);letter-spacing:3px;margin-bottom:12px;}
+.mb-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+.mb-stat{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:3px;padding:8px 4px;}
+.mb-val{font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:var(--a2);}
+.mb-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--dim);letter-spacing:1px;margin-top:3px;}
+.mb-close{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:8px 20px;border-radius:2px;cursor:pointer;border:1px solid rgba(232,200,74,.3);background:rgba(232,200,74,.08);color:var(--gold);text-transform:uppercase;}
 .divider{height:1px;background:linear-gradient(90deg,transparent,var(--glow),transparent);margin:12px 0;opacity:.4;}
 /* RECAP */
 .recap-card{background:linear-gradient(135deg,rgba(123,47,255,.08),rgba(199,125,255,.03));border:1px solid rgba(123,47,255,.3);border-radius:4px;padding:14px;margin-bottom:9px;position:relative;overflow:hidden;}
@@ -449,6 +477,11 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
       <button class="seb-btn" onclick="startNewSeason()">Démarrer la Saison suivante</button>
     </div>
     <div id="weekly-recap"></div>
+    <div class="mid-bilan" id="mid-bilan" style="display:none">
+      <div class="mb-title" id="mb-title">⬡ BILAN J30</div>
+      <div class="mb-stats" id="mb-stats"></div>
+      <button class="mb-close" onclick="closeMidBilan()">Continuer →</button>
+    </div>
     <div class="xp-card">
       <div class="xp-top"><div><div class="xp-lbl">Progression</div><div class="xp-rn" id="xprn">RANG C</div></div><div class="xp-r"><div class="xp-nums" id="xpn">0 XP</div><div class="xp-nxt" id="xpnxt">→ Rang B</div></div></div>
       <div class="xp-bg"><div class="xp-fill" id="xpf" style="width:0%"></div></div>
@@ -466,6 +499,24 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
       <div class="pil" onclick="fp('social',this)"><div class="pil-ic">🤝</div><div class="pil-nm">Relations</div><div class="pil-xp" id="px-social">0</div></div>
     </div>
     <div class="prog-grid" id="prog-grid"></div>
+    <div class="dg-banner" id="dg-b" style="display:none">
+      <div class="dg-banner-inner">
+        <div class="dg-banner-rank" id="dg-banner-rank">⚔️ DONJON RANG C</div>
+        <div class="dg-banner-title" id="dg-banner-title">—</div>
+        <div class="dg-banner-intro" id="dg-banner-intro">—</div>
+        <div class="dg-banner-actions">
+          <button class="dg-btn-complete" onclick="completeDungeon()">✓ Valider le donjon</button>
+          <button class="dg-btn-fail" onclick="failDungeon()">✗ Abandonner</button>
+        </div>
+      </div>
+    </div>
+    <div class="dg-entry-banner" id="dg-entry-b" style="display:none">
+      <div class="dg-entry-inner">
+        <div class="dg-entry-lbl">⚔️ DONJON DISPONIBLE</div>
+        <div class="dg-entry-sub">Un défi t'attend ce dimanche</div>
+        <button class="dg-entry-btn" onclick="enterDungeon()">Entrer dans le donjon</button>
+      </div>
+    </div>
     <div class="chest-banner" id="chest-b" onclick="openChest()"><div class="chest-ic">🎁</div><div class="chest-tit">COFFRE DISPONIBLE</div><div class="chest-sub">APPUIE POUR OUVRIR</div></div>
     <div class="sq-block" id="sq-b"><div class="sq-lbl">✦ quête secrète</div><div class="sq-t" id="sq-t">—</div><div class="sq-d" id="sq-d">—</div><div class="sq-r" id="sq-r">—</div></div>
     <div class="boss" id="boss-b"></div>
@@ -522,6 +573,12 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
         <div class="hc-stat"><div class="hc-val" id="hc-days">0</div><div class="hc-lbl">Jours actifs</div></div>
         <div class="hc-stat"><div class="hc-val" id="hc-gym">0</div><div class="hc-lbl">Séances</div></div>
       </div>
+      <div class="hc-stats" style="margin-top:-6px">
+        <div class="hc-stat"><div class="hc-val" style="color:var(--green)" id="hc-dg-ok">0</div><div class="hc-lbl">Donjons ✓</div></div>
+        <div class="hc-stat"><div class="hc-val" style="color:var(--red)" id="hc-dg-fail">0</div><div class="hc-lbl">Donjons ✗</div></div>
+        <div class="hc-stat"><div class="hc-val" style="color:var(--gold)" id="hc-fajr">0</div><div class="hc-lbl">Fajr streak</div></div>
+        <div class="hc-stat"><div class="hc-val" style="color:var(--a2)" id="hc-quests">0</div><div class="hc-lbl">Quêtes</div></div>
+      </div>
       <div class="hc-xp-bar-wrap">
         <div class="hc-xp-label"><span id="hc-xp-cur">0</span> XP <span id="hc-xp-next">/ 15 000 pour Rang B</span></div>
         <div class="hc-xp-bar"><div class="hc-xp-fill" id="hc-xp-fill"></div></div>
@@ -567,6 +624,19 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
     </div>
   </div>
 </div>
+<!-- DUNGEON REWARD OVERLAY -->
+<div class="dg-reward-ov" id="dg-reward-ov" style="display:none">
+  <div class="dg-reward-box">
+    <div class="dg-rw-rank" id="dg-rw-rank">⚔️ DONJON COMPLÉTÉ</div>
+    <div class="dg-rw-ic" id="dg-rw-ic">🎁</div>
+    <div class="dg-rw-lbl">BUTIN OBTENU</div>
+    <div class="dg-rw-name" id="dg-rw-name">—</div>
+    <div class="dg-rw-desc" id="dg-rw-desc">—</div>
+    <div class="dg-rw-xp" id="dg-rw-xp">+300 XP</div>
+    <div class="dg-rw-title" id="dg-rw-title">—</div>
+    <button class="dg-rw-cta" onclick="closeDungeonReward()">⚔️ Réclamer le butin</button>
+  </div>
+</div>
 <!-- OVERLAYS -->
 <div class="rev-ov" id="rev-ov">
   <div class="rev-box" id="rev-box">
@@ -603,7 +673,7 @@ const XRANKS=[
 function getXRank(xp){for(let i=XRANKS.length-1;i>=0;i--)if(xp>=XRANKS[i].min)return XRANKS[i];return XRANKS[0];}
 
 const SEASON_DAYS=90;
-const SAVE_KEY='solo-rising-v25';
+const SAVE_KEY='solo-rising-v39';
 const DAYS=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
 const PC={
   islam:  {l:'☽ Islam',     c:'#e8c84a',i:'☽'},
@@ -962,37 +1032,219 @@ const QP={
   },
 };
 
+// ═══════════════════════════════════════════
+// DUNGEONS — Dimanche uniquement
+// ═══════════════════════════════════════════
+const ALL_DUNGEONS=[
+  // ── RANG E ──
+  {id:'dg-e1',pillar:'mindset',rank:'E',xp:100,
+   t:"Le Miroir",
+   intro:"Tu entres dans le donjon. Pas d'ennemi dehors — l'ennemi c'est toi.",
+   missions:[
+     {m:"Trouve un endroit calme. Écris à la main pendant 30 min tout ce qui te bloque dans la vie — pas tes objectifs, tes vraies peurs et excuses."},
+     {m:"Relis ce que t'as écrit. Identifie ta peur numéro 1. Écris comment tu comptes l'affronter."},
+     {m:"Brûle ou déchire la page. Symbolise que tu passes à autre chose."},
+   ],
+   boss:"Reste 10 min en silence complet après. Pas de téléphone. Juste toi.",
+   reward:'🎁',rewardName:'???',rewardDesc:'Tu le découvres en sortant du donjon.',
+   title:"L'Honnête",titleId:'dg-e1-title',
+  },
+  {id:'dg-e2',pillar:'social',rank:'E',xp:100,
+   t:"L'Inconnu",
+   intro:"Tu quittes ton environnement habituel. Le donjon commence quand tu sors.",
+   missions:[
+     {m:"Sors seul dans un endroit de ta ville que t'as jamais exploré. Sans destination précise."},
+     {m:"Marche pendant 1h minimum. Téléphone dans la poche — tu regardes autour de toi."},
+     {m:"Engage une vraie conversation avec un inconnu. Pas juste bonjour. Une vraie discussion."},
+   ],
+   boss:"Reviens chez toi et écris en 5 lignes ce que cette sortie t'a appris sur toi.",
+   reward:'🎁',rewardName:'???',rewardDesc:'Tu le découvres en sortant du donjon.',
+   title:"L'Explorateur",titleId:'dg-e2-title',
+  },
+  {id:'dg-e3',pillar:'social',rank:'E',xp:100,
+   t:"La Gratitude",
+   intro:"Le donjon le plus difficile n'est pas toujours le plus physique.",
+   missions:[
+     {m:"Identifie 3 personnes qui ont compté dans ta vie et à qui tu n'as jamais vraiment dit merci."},
+     {m:"Appelle-les une par une. Pas un message. Un appel. Tu leur dis exactement ce qu'ils représentent pour toi."},
+     {m:"Écoute vraiment leur réponse. Sans préparer la suite."},
+   ],
+   boss:"Écris 3 lignes sur ce que tu as ressenti. Garde-les dans ton journal.",
+   reward:'🎁',rewardName:'???',rewardDesc:'Tu le découvres en sortant du donjon.',
+   title:"Le Reconnaissant",titleId:'dg-e3-title',
+  },
+  {id:'dg-e4',pillar:'mindset',rank:'E',xp:100,
+   t:"Le Détox",
+   intro:"Tu mesures ta vraie dépendance aujourd'hui.",
+   missions:[
+     {m:"Pose ton téléphone à 8h. Tu n'y touches plus jusqu'à 20h. 12h complètes."},
+     {m:"Pendant ce temps : mange, lis, marche, parle à des gens en vrai, prie. Vis sans écran."},
+     {m:"À 20h, note en 5 lignes ce que tu as ressenti, ce qui t'a manqué, ce que t'as découvert."},
+   ],
+   boss:"Identifie 1 habitude digitale que tu veux changer après cette expérience.",
+   reward:'🎁',rewardName:'???',rewardDesc:'Tu le découvres en sortant du donjon.',
+   title:"L'Affranchi",titleId:'dg-e4-title',
+  },
+
+  // ── RANG D ──
+  {id:'dg-d1',pillar:'sport',rank:'D',xp:175,
+   t:"Le Corps Limite",
+   intro:"Aujourd'hui tu découvres une nouvelle limite physique.",
+   missions:[
+     {m:"Choisis un sport que t'as jamais fait ou très rarement — boxe, natation, escalade, course longue. Tu t'inscris ou tu y vas aujourd'hui."},
+     {m:"Tu fais la session complète. Même si c'est dur. Même si tu veux arrêter."},
+     {m:"15 000 pas minimum dans la journée en plus de cette session."},
+   ],
+   boss:"Reviens chez toi et mange un repas sain que tu prépares toi-même. Pas de livraison.",
+   reward:'🎁',rewardName:'???',rewardDesc:'Tu le découvres en sortant du donjon.',
+   title:"Le Conquérant",titleId:'dg-d1-title',
+  },
+  {id:'dg-d2',pillar:'learn',rank:'D',xp:175,
+   t:"Le Maître",
+   intro:"Tu sors de ton cercle. Tu vas chercher la connaissance à la source.",
+   missions:[
+     {m:"Identifie quelqu'un qui a réussi ce que tu veux accomplir — en trading, en vente, en business, en sport. Pas une célébrité. Quelqu'un d'accessible."},
+     {m:"Tu l'approches aujourd'hui. Message LinkedIn, appel, en personne. Tu lui poses 3 questions précises et sérieuses."},
+     {m:"Tu écoutes vraiment. Tu prends des notes."},
+   ],
+   boss:"Note les 3 leçons concrètes que tu retiens et comment tu les appliques dès demain.",
+   reward:'🎁',rewardName:'???',rewardDesc:'Tu le découvres en sortant du donjon.',
+   title:"L'Apprenti Maître",titleId:'dg-d2-title',
+  },
+  {id:'dg-d3',pillar:'social',rank:'D',xp:175,
+   t:"La Dette",
+   intro:"Y'a quelque chose que tu aurais dû dire depuis longtemps.",
+   missions:[
+     {m:"Identifie une tension en suspens avec quelqu'un — un ami, un frère, ta copine, un parent. Quelque chose que t'as évité."},
+     {m:"Tu l'appelles ou tu le vois en personne aujourd'hui. Tu dis ce que t'as à dire, calmement et honnêtement."},
+     {m:"Tu écoutes sa réponse sans te défendre. Tu laisses la conversation aller jusqu'au bout."},
+   ],
+   boss:"Envoie un message de suivi dans la soirée si nécessaire. Clôture proprement.",
+   reward:'🎁',rewardName:'???',rewardDesc:'Tu le découvres en sortant du donjon.',
+   title:"Le Pacificateur",titleId:'dg-d3-title',
+  },
+  {id:'dg-d4',pillar:'mindset',rank:'D',xp:175,
+   t:"Le Silence du Guerrier",
+   intro:"Le bruit extérieur cache le bruit intérieur. Aujourd'hui tu fais silence sur tout.",
+   missions:[
+     {m:"De Fajr jusqu'à Asr — zéro musique, zéro vidéo, zéro réseaux, zéro jeux. Silence total."},
+     {m:"Dans ce silence, lis 20 pages d'un livre sérieux. Assis, posé, sans bouger."},
+     {m:"Fais une marche de 45 min minimum en silence. Pas d'écouteurs. Juste toi et l'environnement."},
+   ],
+   boss:"Après Asr, écris en 10 lignes ce que ce silence t'a révélé sur toi-même.",
+   reward:'🎁',rewardName:'???',rewardDesc:'Tu le découvres en sortant du donjon.',
+   title:"Le Silencieux",titleId:'dg-d4-title',
+  },
+
+  // ── RANG C ──
+  {id:'dg-c1',pillar:'sport',rank:'C',xp:300,
+   t:"L'Aube du Guerrier",
+   intro:"Les grands commencent leur journée quand les autres dorment encore.",
+   missions:[
+     {m:"Réveil à 5h00. Pas de snooze. Fajr immédiatement."},
+     {m:"Séance de sport complète à jeun avant 7h30. Pas de café avant. Eau uniquement."},
+     {m:"Douche froide après la séance. Pas tiède. Froide."},
+     {m:"Plan écrit de ta semaine à venir avant 9h. Objectifs clairs, chiffres précis."},
+   ],
+   boss:"De 9h à 12h — zéro téléphone. Tu travailles sur quelque chose d'important pour ton futur.",
+   reward:'🎁',rewardName:'???',rewardDesc:'Tu le découvres en sortant du donjon.',
+   title:"Fils de l'Aube Noire",titleId:'dg-c1-title',
+  },
+  {id:'dg-c2',pillar:'money',rank:'C',xp:300,
+   t:"L'Investisseur",
+   intro:"Aujourd'hui tu poses un acte concret vers ta liberté financière.",
+   missions:[
+     {m:"Analyse tes 3 derniers mois de dépenses. Catégorise tout. Trouve ce que tu peux couper."},
+     {m:"Fixe un montant d'épargne mensuel réaliste et ouvre ou alimente un compte dédié aujourd'hui même."},
+     {m:"Documente ton système de trading actuel — règles, résultats, points à améliorer. 1h de travail sérieux."},
+     {m:"Identifie 1 investissement concret que tu veux faire dans les 3 prochains mois. Recherche, chiffres, plan."},
+   ],
+   boss:"Écris ta projection financière à 12 mois si tu respectes ce plan.",
+   reward:'🎁',rewardName:'???',rewardDesc:'Tu le découvres en sortant du donjon.',
+   title:"Le Bâtisseur de Richesse",titleId:'dg-c2-title',
+  },
+  {id:'dg-c3',pillar:'islam',rank:'C',xp:300,
+   t:"Le Croyant",
+   intro:"Aujourd'hui ta relation avec Allah prime sur tout le reste.",
+   missions:[
+     {m:"Les 5 prières à l'heure exacte. Aucune repoussée. Si t'es dehors tu trouves un endroit."},
+     {m:"Lis 5 pages de Coran avec sens et méditation. Pas de lecture rapide — tu comprends chaque verset."},
+     {m:"100x Istighfar + 100x SubhanAllah + 100x Alhamdulillah. À voix basse, avec concentration."},
+     {m:"Fais une sadaqa aujourd'hui. Peu importe le montant. L'intention compte."},
+   ],
+   boss:"Fais une douaa sincère de 10 min minimum. Tu parles à Allah directement — tes vraies demandes, tes vraies peurs, tes vrais espoirs.",
+   reward:'🎁',rewardName:'???',rewardDesc:'Tu le découvres en sortant du donjon.',
+   title:"Serviteur Sincère",titleId:'dg-c3-title',
+  },
+  {id:'dg-c4',pillar:'mindset',rank:'C',xp:300,
+   t:"La Transformation",
+   intro:"Ce donjon ne se fait pas en restant chez toi. Il demande tout de toi.",
+   missions:[
+     {m:"Réveil avant 7h. Fajr. Puis écris en 1 page qui tu veux être dans 1 an exactement."},
+     {m:"Appelle ta copine ou un proche important. Dis-leur ce qu'ils représentent vraiment pour toi. Vrai conversation, pas rapide."},
+     {m:"Fais un effort physique exceptionnel — 18 000 pas minimum, ou une session sport intense que t'as jamais faite."},
+     {m:"Le soir, relis ce que t'as écrit le matin. Corrige ou enrichis. Signe-le comme un contrat avec toi-même."},
+   ],
+   boss:"Exporte ton save Solo Rising ce soir. Regarde ta progression. Écris 3 lignes sur ce que tu as accompli depuis le Jour 1.",
+   reward:'🎁',rewardName:'???',rewardDesc:'Tu le découvres en sortant du donjon.',
+   title:"Le Transformé",titleId:'dg-c4-title',
+  },
+];
+
+// Hidden dungeon rewards
+const _DR={
+  E:[
+    {ic:'🍜',name:'Resto au choix',desc:"Un repas dans le resto que t'avais envie de tester. Tu l'as mérité."},
+    {ic:'🎬',name:'Soirée cinéma',desc:"Cinéma + snacks. Seul ou accompagné. Déconnecte complètement."},
+    {ic:'🧴',name:'Produit soin premium',desc:"Un produit skincare ou parfum que tu voulais tester."},
+    {ic:'☕',name:'Café + pâtisserie',desc:"Un bon café dans l'endroit que t'aimes. Petit plaisir mérité."},
+  ],
+  D:[
+    {ic:'👟',name:'Nouvelle paire de sneakers',desc:"Celles que tu voulais vraiment. Pas les plus chères — les bonnes."},
+    {ic:'🕶',name:'Lunettes de soleil',desc:"Une paire qui te va. Style discret mais présent."},
+    {ic:'🏋',name:'Accessoire de salle premium',desc:"Straps, ceinture ou gants de qualité. Ton prochain niveau à la salle."},
+    {ic:'🍱',name:'Dîner gastronomique',desc:"Un restaurant au-dessus de l'habitude. Toi et ta copine."},
+  ],
+  C:[
+    {ic:'👕',name:'Nouvelle tenue complète',desc:"Haut + bas assortis. Simple, propre, stylé. Tu portes fier."},
+    {ic:'🏖',name:'Week-end détente',desc:"Un week-end avec ta copine. Mer, montagne ou ville. Tu choisis."},
+    {ic:'⌚',name:'Montre',desc:"Une belle montre. Celle que tu voulais depuis longtemps."},
+    {ic:'✈️',name:'City trip',desc:"2 jours dans une ville que t'as jamais visitée. Toi et ta copine."},
+  ],
+};
+
+
 const ALL_SECRET_QUESTS=[
-  {id:'sq1', t:'Le Silence du Guerrier',            d:'1h sans téléphone. Complètement. Teste ta dépendance.',          x:80},
-  {id:'sq2', t:'Salam à un inconnu',                d:"Donne le salam à quelqu'un que tu ne connais pas.",              x:60},
-  {id:'sq3', t:'Lettre à toi au Rang S',            d:'5 lignes à toi-même le jour où tu atteins le Rang S.',           x:70},
-  {id:'sq4', t:'Séance à jeun',                     d:'Ta séance de salle à jeun. Mental et physique.',                 x:90},
-  {id:'sq5', t:"Appelle quelqu'un que tu négliges", d:'Un ami, un frère. Un vrai appel téléphonique.',                  x:60},
-  {id:'sq6', t:'Lis 10 pages',                      d:"10 pages d'un livre sérieux. Assis, posé, concentré.",           x:75},
-  {id:'sq7', t:'24h sans réseaux sociaux',          d:'Aucune app. 24h. Observe ce que tu ressens.',                    x:100},
-  {id:'sq8', t:"Offre quelque chose à quelqu'un",   d:'Un repas, un café inattendu. Générosité pure.',                  x:65},
-  {id:'sq9', t:'Médite sur ta mort',                d:"5 min en silence. Pense à ta propre mort. Qu'est-ce qui compte ?",x:70},
-  {id:'sq10',t:'Marche 15 000 pas',                 d:"50% de plus que d'habitude. Corps en mouvement, esprit clair.",  x:85},
-  {id:'sq11',t:'Cuisine un vrai repas',             d:'De A à Z. Toi. Pas de livraison.',                               x:60},
-  {id:'sq12',t:'Couche-toi à 21h',                  d:'Une nuit de récupération maximale.',                              x:70},
-  {id:'sq13',t:'Écris tes 3 plus grandes peurs',    d:'Honnêtement. Sur papier.',                                       x:65},
-  {id:'sq14',t:'Fais quelque chose de bien en secret',d:"Une bonne action que personne ne verra.",                      x:80},
-  {id:'sq15',t:'Écris une lettre à ta copine',          d:"Ce que tu ressens vraiment. Donne-la ou garde-la.",              x:65},
-  {id:'sq16',t:'Fais une activité avec un frère',        d:"Sortie, sport, repas. Un vrai moment.",                         x:65},
-  {id:'sq17',t:'Désinstalle 1 réseau social 24h',        d:"Supprime l'app. Réinstalle demain. Observe.",                   x:85},
-  {id:'sq18',t:'Apprends 20 mots en turc',               d:"En une séance. Vocabulaire utile. Pas de Google pendant.",      x:75},
-  {id:'sq19',t:'Fais une séance de sport en plein air',  d:"Course, marche intense, sport dehors. Soleil et sueur.",        x:80},
-  {id:'sq20',t:'Prépare tes objectifs de la semaine',    d:"Lundi matin. 3 objectifs clairs. Écris-les.",                   x:60},
-  {id:'sq21',t:"Lis 20 pages d'un livre",               d:"Sans pause. Sans téléphone. 20 pages d'une traite.",            x:80},
-  {id:'sq22',t:'Mange propre toute la journée',          d:"Zéro junk, zéro sucre ajouté, protéines à chaque repas.",       x:70},
-  {id:'sq23',t:'Fais quelque chose que tu repousses',    d:"Cette tâche que t'as dans la tête depuis des jours. Fais-la.",  x:90},
-  {id:'sq24',t:"Écoute quelqu'un sans l'interrompre",  d:"Une conversation complète. Tu écoutes. Vraiment.",              x:60},
-  {id:'sq25',t:'Planifie le mois qui vient',             d:"Objectifs financiers, sportifs, personnels. Vue d'ensemble.",   x:75},
-  {id:'sq26',t:'Passe 1h sans aucun écran',              d:"Ni téléphone, ni TV, ni PC. Juste toi et tes pensées.",         x:85},
-  {id:'sq27',t:'Fais une action pour ta santé financière',d:"Épargne, investis, analyse. 1 mouvement concret.",             x:70},
-  {id:'sq28',t:'Exprime ta gratitude à Allah',           d:"15 min de dhikr et de douaa sincère. Cœur ouvert.",             x:65},
-  {id:'sq29',t:'Identifie tes 3 mauvaises habitudes',    d:"Honnêtement. Écris-les. Comment tu les élimines ?",             x:70},
-  {id:'sq30',t:'Prends une photo de ta progression',     d:"Selfie, note, screenshot. Documente qui tu deviens.",           x:55},
+  {id:'sq1', p:'mindset', t:'Le Silence du Guerrier',            d:'1h sans téléphone. Complètement. Teste ta dépendance.',          x:80},
+  {id:'sq2', p:'social',  t:'Salam à un inconnu',                d:"Donne le salam à quelqu'un que tu ne connais pas.",              x:60},
+  {id:'sq3', p:'mindset', t:'Lettre à toi au Rang S',            d:'5 lignes à toi-même le jour où tu atteins le Rang S.',           x:70},
+  {id:'sq4', p:'sport',   t:'Séance à jeun',                     d:'Ta séance de salle à jeun. Mental et physique.',                 x:90},
+  {id:'sq5', p:'social',  t:"Appelle quelqu'un que tu négliges", d:'Un ami, un frère. Un vrai appel téléphonique.',                  x:60},
+  {id:'sq6', p:'learn',   t:'Lis 10 pages',                      d:"10 pages d'un livre sérieux. Assis, posé, concentré.",           x:75},
+  {id:'sq7', p:'mindset', t:'24h sans réseaux sociaux',          d:'Aucune app. 24h. Observe ce que tu ressens.',                    x:100},
+  {id:'sq8', p:'social',  t:"Offre quelque chose à quelqu'un",   d:'Un repas, un café inattendu. Générosité pure.',                  x:65},
+  {id:'sq9', p:'islam',   t:'Médite sur ta mort',                d:"5 min en silence. Pense à ta propre mort. Qu'est-ce qui compte ?",x:70},
+  {id:'sq10',p:'sport',   t:'Marche 15 000 pas',                 d:"50% de plus que d'habitude. Corps en mouvement, esprit clair.",  x:85},
+  {id:'sq11',p:'food',    t:'Cuisine un vrai repas',             d:'De A à Z. Toi. Pas de livraison.',                               x:60},
+  {id:'sq12',p:'food',    t:'Couche-toi à 21h',                  d:'Une nuit de récupération maximale.',                              x:70},
+  {id:'sq13',p:'mindset', t:'Écris tes 3 plus grandes peurs',    d:'Honnêtement. Sur papier.',                                       x:65},
+  {id:'sq14',p:'islam',   t:'Fais quelque chose de bien en secret',d:"Une bonne action que personne ne verra.",                      x:80},
+  {id:'sq15',p:'social',  t:'Écris une lettre à ta copine',      d:"Ce que tu ressens vraiment. Donne-la ou garde-la.",              x:65},
+  {id:'sq16',p:'social',  t:'Fais une activité avec un frère',   d:"Sortie, sport, repas. Un vrai moment.",                          x:65},
+  {id:'sq17',p:'mindset', t:'Désinstalle 1 réseau social 24h',   d:"Supprime l'app. Réinstalle demain. Observe.",                    x:85},
+  {id:'sq18',p:'learn',   t:'Apprends 20 mots en turc',          d:"En une séance. Vocabulaire utile. Pas de Google pendant.",       x:75},
+  {id:'sq19',p:'sport',   t:'Fais une séance de sport en plein air',d:"Course, marche intense, sport dehors. Soleil et sueur.",      x:80},
+  {id:'sq20',p:'mindset', t:'Prépare tes objectifs de la semaine',d:"Lundi matin. 3 objectifs clairs. Écris-les.",                   x:60},
+  {id:'sq21',p:'learn',   t:"Lis 20 pages d'un livre",           d:"Sans pause. Sans téléphone. 20 pages d'une traite.",             x:80},
+  {id:'sq22',p:'food',    t:'Mange propre toute la journée',     d:"Zéro junk, zéro sucre ajouté, protéines à chaque repas.",        x:70},
+  {id:'sq23',p:'mindset', t:'Fais quelque chose que tu repousses',d:"Cette tâche que t'as dans la tête depuis des jours. Fais-la.", x:90},
+  {id:'sq24',p:'social',  t:"Écoute quelqu'un sans l'interrompre",d:"Une conversation complète. Tu écoutes. Vraiment.",             x:60},
+  {id:'sq25',p:'money',   t:'Planifie le mois qui vient',        d:"Objectifs financiers, sportifs, personnels. Vue d'ensemble.",    x:75},
+  {id:'sq26',p:'mindset', t:'Passe 1h sans aucun écran',         d:"Ni téléphone, ni TV, ni PC. Juste toi et tes pensées.",          x:85},
+  {id:'sq27',p:'money',   t:'Fais une action pour ta santé financière',d:"Épargne, investis, analyse. 1 mouvement concret.",        x:70},
+  {id:'sq28',p:'islam',   t:'Exprime ta gratitude à Allah',      d:"15 min de dhikr et de douaa sincère. Cœur ouvert.",              x:65},
+  {id:'sq29',p:'mindset', t:'Identifie tes 3 mauvaises habitudes',d:"Honnêtement. Écris-les. Comment tu les élimines ?",            x:70},
+  {id:'sq30',p:'mindset', t:'Prends une photo de ta progression', d:"Selfie, note, screenshot. Documente qui tu deviens.",           x:55},
 ];
 
 const ALL_BOSSES=[
@@ -1090,8 +1342,22 @@ function buildDay(dow,S){
 
   // MODE VACANCES / MALADIE — zéro quête obligatoire, zéro pénalité
   if(S.vacationMode){
-    // Juste Fajr en optionnel — pas de streak, pas de pénalité
     q.push({...QP.islam.fix[0],p:'islam',fix:0,noCount:1,x:10});
+    return q;
+  }
+
+  // MODE DONJON — dimanche uniquement, remplace toutes les quêtes
+  if(dow===0){
+    if(S.currentDungeon){
+      const dg=ALL_DUNGEONS.find(d=>d.id===S.currentDungeon);
+      if(dg){
+        const mXp=Math.round(dg.xp*0.15),bXp=Math.round(dg.xp*0.25);
+        const dgP=dg.pillar||'mindset';
+        dg.missions.forEach((m,i)=>q.push({id:'dg-m'+i,t:m.m,d:'Mission '+(i+1)+'/'+dg.missions.length,x:mXp,p:dgP,dgMission:1,fix:1}));
+        q.push({id:'dg-boss',t:dg.boss,d:'⚔️ BOSS — Mission finale',x:bXp,p:dgP,dgBoss:1,fix:1});
+      }
+    }
+    // Dimanche sans donjon actif = page vide, juste le bandeau d'entrée
     return q;
   }
 
@@ -1148,7 +1414,7 @@ function buildDay(dow,S){
   // SECRET — after 5 consecutive good days (fixes only)
   if(S.dayCount%3===0){
     const sq=getNextSecret(S);
-    q.push({...sq,p:'mindset',secret:1});
+    q.push({...sq,p:sq.p||'mindset',secret:1});
   }
 
   // REDEMPTION
@@ -1226,6 +1492,12 @@ function fresh(){
     yesterday:[],
     secretUsed:[],
     freezesLeft:5,
+    dungeonUsed:[],
+    currentDungeon:null,
+    dungeonFailed:0,
+    dungeonCompleted:0,
+    midBilan:null,
+    showMidBilan:false,
     dayFrozen:false,
     gymFreezesLeft:5,
     gymFrozen:false,
@@ -1256,6 +1528,12 @@ if(s.vacationMode===undefined)s.vacationMode=false;
   if(s.dayFrozen===undefined)s.dayFrozen=false;
   if(s.gymFreezesLeft===undefined)s.gymFreezesLeft=5;
   if(s.gymFrozen===undefined)s.gymFrozen=false;
+  if(s.dungeonUsed===undefined)s.dungeonUsed=[];
+  if(s.currentDungeon===undefined)s.currentDungeon=null;
+  if(s.dungeonFailed===undefined)s.dungeonFailed=0;
+  if(s.dungeonCompleted===undefined)s.dungeonCompleted=0;
+  if(s.midBilan===undefined)s.midBilan=null;
+  if(s.showMidBilan===undefined)s.showMidBilan=false;
   // Remove legacy keys
   delete s.secretDeck;
   return s;
@@ -1304,7 +1582,11 @@ function processDay(s){
     const pd=s.quests.filter(q=>q.p===p&&!q.noCount&&!q.redemption&&s.checked[q.id]).length;
     pp[p]=pt>0?pd/pt*100:0;
   });
-  s.history.push({dow:s.dow,dayCount:s.dayCount,seasonDay:s.seasonDay,totalPct:pct,pillarPcts:pp,xpEarned:s.dailyXp});
+  // Mark dungeon days in history
+  const isDungeonDay=s.dow===0&&(s.currentDungeon||s.quests.some(q=>q.dgMission||q.dgBoss));
+  const histEntry={dow:s.dow,dayCount:s.dayCount,seasonDay:s.seasonDay,totalPct:pct,pillarPcts:pp,xpEarned:s.dailyXp};
+  if(isDungeonDay)histEntry.dungeon=true;
+  s.history.push(histEntry);
   if(s.history.length>180)s.history.shift();
 
   const perfect=isPerfect(s.quests,s.checked);
@@ -1445,8 +1727,44 @@ document.getElementById('day-badge').innerHTML=_isOff?`<div class="off-badge">${
   // Season end
   const seb=document.getElementById('seb');
   if(S.seasonEnded){
-    document.getElementById('seb-title').textContent=`SAISON ${S.seasonNum} TERMINÉE`;
-    document.getElementById('seb-sub').innerHTML=`Rang : <strong style="color:${rank.col}">${rank.label}</strong> · Streak : ${S.bestStreak}j · ${S.totalXp.toLocaleString('fr')} XP`;
+    document.getElementById('seb-title').textContent='SAISON '+S.seasonNum+' TERMINÉE';
+    // Full season recap
+    const activeDays=S.history.filter(h=>!h.frozen&&!h.dungeon);
+    const avgPct=activeDays.length>0?Math.round(activeDays.reduce((a,h)=>a+h.totalPct,0)/activeDays.length):0;
+    const totalXpSeason=S.history.reduce((a,h)=>a+(h.xpEarned||0),0);
+    const dungeonDays=S.history.filter(h=>h.dungeon);
+    const pillarTotals={};
+    ['islam','money','sport','food','mindset','learn','social'].forEach(p=>{pillarTotals[p]=S.pillarXp[p]||0;});
+    const sortedPillars=Object.entries(pillarTotals).sort((a,b)=>b[1]-a[1]);
+    const strongest=sortedPillars[0],weakest=sortedPillars[sortedPillars.length-1];
+    const grade=avgPct>=90?'S':avgPct>=75?'A':avgPct>=60?'B':avgPct>=40?'C':'F';
+    const gradeCol={S:'var(--a2)',A:'var(--gold)',B:'var(--green)',C:'var(--blue)',F:'var(--red)'}[grade];
+    document.getElementById('seb-sub').innerHTML=
+      '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0">'+
+        '<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:3px;padding:8px">'+
+          '<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:'+gradeCol+'">'+grade+'</div>'+
+          '<div style="font-family:Share Tech Mono,monospace;font-size:8px;color:var(--dim)">GRADE SAISON</div></div>'+
+        '<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:3px;padding:8px">'+
+          '<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:var(--a2)">'+avgPct+'%</div>'+
+          '<div style="font-family:Share Tech Mono,monospace;font-size:8px;color:var(--dim)">MOY. JOURNÉE</div></div>'+
+        '<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:3px;padding:8px">'+
+          '<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:var(--gold)">'+S.totalXp.toLocaleString("fr")+'</div>'+
+          '<div style="font-family:Share Tech Mono,monospace;font-size:8px;color:var(--dim)">XP TOTAL</div></div>'+
+        '<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:3px;padding:8px">'+
+          '<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:var(--green)">'+S.bestStreak+'</div>'+
+          '<div style="font-family:Share Tech Mono,monospace;font-size:8px;color:var(--dim)">MEILLEUR STREAK</div></div>'+
+        '<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:3px;padding:8px">'+
+          '<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:var(--green)">'+S.dungeonCompleted+'</div>'+
+          '<div style="font-family:Share Tech Mono,monospace;font-size:8px;color:var(--dim)">DONJONS ✓</div></div>'+
+        '<div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:3px;padding:8px">'+
+          '<div style="font-family:Cinzel,serif;font-size:20px;font-weight:700;color:var(--red)">'+S.dungeonFailed+'</div>'+
+          '<div style="font-family:Share Tech Mono,monospace;font-size:8px;color:var(--dim)">DONJONS ✗</div></div>'+
+      '</div>'+
+      '<div style="font-family:Share Tech Mono,monospace;font-size:9px;color:var(--dim);margin-top:8px;line-height:1.8">'+
+        '💪 FORT : <strong style="color:'+PC[strongest[0]].c+'">'+PC[strongest[0]].l.split(" ")[1]+'</strong> · '+
+        '⚠ FAIBLE : <strong style="color:'+PC[weakest[0]].c+'">'+PC[weakest[0]].l.split(" ")[1]+'</strong><br>'+
+        '🌙 Fajr streak : '+S.fajrStreak+' · ⚡ Séances : '+S.gymCount+' · 📚 Quêtes : '+S.questsDone+
+      '</div>';
     seb.classList.add('show');
   } else seb.classList.remove('show');
 
@@ -1478,6 +1796,7 @@ document.getElementById('day-badge').innerHTML=_isOff?`<div class="off-badge">${
 
   // Weekly recap
   document.getElementById('weekly-recap').innerHTML=S.showRecap&&S.weeklyRecap?renderRecapCard(S.weeklyRecap):'';
+  renderMidBilan();
 
   // Rank card (elements moved to profile page)
   const et=S.equippedTitle?TITLES.find(t=>t.id===S.equippedTitle):null;
@@ -1553,6 +1872,33 @@ document.getElementById('day-badge').innerHTML=_isOff?`<div class="off-badge">${
       frzB.className='frz-chip'+(S.freezesLeft<=0?' hidden':'');
     }
   }
+  // Dungeon banners
+  const dgB=document.getElementById('dg-b');
+  const dgEntryB=document.getElementById('dg-entry-b');
+  if(dgB&&dgEntryB){
+    if(S.dow===0&&S.currentDungeon){
+      // Active dungeon
+      const dg=ALL_DUNGEONS.find(d=>d.id===S.currentDungeon);
+      if(dg){
+        document.getElementById('dg-banner-rank').textContent='⚔️ DONJON RANG '+dg.rank+' — '+dg.t;
+        document.getElementById('dg-banner-title').textContent=dg.t;
+        document.getElementById('dg-banner-intro').textContent=dg.intro;
+        dgB.style.display='block';
+        dgEntryB.style.display='none';
+        dgEntryB.style.visibility='visible';
+      }
+    } else if(S.dow===0&&!S.currentDungeon&&!S.vacationMode&&!S.pendingDungeonReward){
+      // Sunday, no active dungeon — show entry banner
+      dgB.style.display='none';
+      dgEntryB.style.display='block';
+      dgEntryB.style.visibility='visible';
+    } else {
+      dgB.style.display='none';
+      dgEntryB.style.display='none';
+    }
+  }
+  // Show dungeon reward if pending
+  if(S.pendingDungeonReward)showDungeonReward();
   // Vacation banner
   document.getElementById('vac-b').classList.toggle('show',S.vacationMode);
   const _vmb=document.getElementById('vac-main-btn');
@@ -1664,6 +2010,10 @@ function renderHistory(){
     if(h.frozen){
       return `<div class="hd ms"><div class="hd-top"><div class="hd-day">${DAYS[h.dow]} J${h.dayCount}</div><div class="hd-sc" style="color:var(--dim)">⛱ repos</div></div></div>`;
     }
+    if(h.dungeon){
+      const dgCol=h.totalPct>=75?'var(--green)':h.totalPct>=40?'var(--gold)':'var(--red)';
+      return `<div class="hd pa"><div class="hd-top"><div class="hd-day">${DAYS[h.dow]} J${h.dayCount}</div><div class="hd-sc" style="color:${dgCol}">⚔️ Donjon · +${h.xpEarned} XP</div></div></div>`;
+    }
     const cls=h.totalPct>=100?'pf':h.totalPct>=60?'pa':'ms',sc=h.totalPct>=100?'var(--green)':h.totalPct>=60?'var(--gold)':'var(--red)';
     return `<div class="hd ${cls}"><div class="hd-top"><div class="hd-day">${DAYS[h.dow]} J${h.dayCount}</div><div class="hd-sc" style="color:${sc}">${Math.round(h.totalPct)}% · +${h.xpEarned} XP</div></div><div class="hd-bars">${['islam','money','sport','food','mindset','learn','social'].map(p=>{const pc=h.pillarPcts[p]||0,c=PC[p];return `<div class="hd-bar"><div class="hd-ic">${c.i}</div><div class="hd-bg"><div class="hd-fill" style="height:${pc}%;background:${c.c}"></div></div><div class="hd-pct">${Math.round(pc)}%</div></div>`;}).join('')}</div></div>`;
   }).join('');
@@ -1733,6 +2083,14 @@ function renderProfile(){
   if(hcStreak) hcStreak.textContent=S.streak;
   if(hcDays) hcDays.textContent=S.dayCount;
   if(hcGym) hcGym.textContent=S.gymCount;
+  const hcDgOk=document.getElementById('hc-dg-ok');
+  const hcDgFail=document.getElementById('hc-dg-fail');
+  const hcFajr=document.getElementById('hc-fajr');
+  const hcQuests=document.getElementById('hc-quests');
+  if(hcDgOk) hcDgOk.textContent=S.dungeonCompleted||0;
+  if(hcDgFail) hcDgFail.textContent=S.dungeonFailed||0;
+  if(hcFajr) hcFajr.textContent=S.fajrStreak||0;
+  if(hcQuests) hcQuests.textContent=S.questsDone||0;
   if(rank.id!=='S'&&next){
     const pct=Math.min(100,Math.round((S.totalXp-next.min)/(next.max-next.min)*100));
     if(hcXpCur) hcXpCur.textContent=S.totalXp.toLocaleString('fr');
@@ -1850,10 +2208,21 @@ function nextDay(){
   } else {S.showRecap=false;}
   S.yesterday=S.quests.map(q=>q.id);
   S.dow=nextDow;S.dayCount++;S.seasonDay++;S.dailyXp=0;S.bonusPaid=false;S.gymFrozen=false;S.dayFrozen=false;
+  // Reset dungeon state when leaving Sunday
+  if(nextDow!==0){S.currentDungeon=null;S.pendingDungeonReward=null;}
   if(S.seasonDay>SEASON_DAYS){
     S.seasonEnded=true;
     notif('⬡ SAISON '+S.seasonNum+' TERMINÉE');
     save();render();return;
+  }
+  // Bilan intermédiaire J30 et J60
+  if(S.seasonDay===30||S.seasonDay===60){
+    const milestone=S.seasonDay===30?'⬡ BILAN J30':'⬡ BILAN J60';
+    const activeDays30=S.history.slice(-30).filter(h=>!h.frozen);
+    const avg30=activeDays30.length>0?Math.round(activeDays30.reduce((a,h)=>a+h.totalPct,0)/activeDays30.length):0;
+    const xp30=S.history.slice(-30).reduce((a,h)=>a+(h.xpEarned||0),0);
+    S.midBilan={day:S.seasonDay,avg:avg30,xp:xp30,streak:S.bestStreak,dungeonOk:S.dungeonCompleted,fajr:S.fajrStreak};
+    S.showMidBilan=true;
   }
   S.quests=buildDay(nextDow,S);S.checked={};S.sysMsg=pickSM(nextDow);
   fil='all';document.querySelectorAll('.pil').forEach((el,i)=>el.classList.toggle('on',i===0));
@@ -1910,6 +2279,99 @@ function toggleFreeze(){
   notif('❄ Jour gelé — streak préservé ('+S.freezesLeft+' restants)');
 }
 
+function pickDungeon(){
+  // Pick random dungeon not recently used
+  const available=ALL_DUNGEONS.filter(d=>!S.dungeonUsed.includes(d.id));
+  const pool=available.length>0?available:ALL_DUNGEONS;
+  const picked=pool[Math.floor(Math.random()*pool.length)];
+  if(available.length===0)S.dungeonUsed=[];
+  S.dungeonUsed.push(picked.id);
+  return picked.id;
+}
+
+function enterDungeon(){
+  if(S.dow!==0){notif("⚠ Les donjons s'ouvrent uniquement le dimanche");return;}
+  if(S.currentDungeon){notif('⚠ Donjon déjà actif');return;}
+  S.currentDungeon=pickDungeon();
+  S.quests=buildDay(S.dow,S);
+  S.checked={};
+  save();render();
+  const dg=ALL_DUNGEONS.find(d=>d.id===S.currentDungeon);
+  notif('⚔️ Donjon Rang '+dg.rank+' — '+dg.t+' — EN ROUTE');
+}
+
+function completeDungeon(){
+  const dg=ALL_DUNGEONS.find(d=>d.id===S.currentDungeon);
+  if(!dg)return;
+  // Check all dungeon missions done
+  const allDone=S.quests.every(q=>S.checked[q.id]);
+  if(!allDone){notif("⚠ Complète toutes les missions d'abord");return;}
+  // Missions already gave partial XP — give completion bonus (remaining 10%)
+  const bonusXp=Math.round(dg.xp*0.1);
+  S.totalXp+=bonusXp;S.dailyXp+=bonusXp;
+  S.dungeonCompleted++;
+  // Unlock dungeon title
+  const titleId='dg-'+dg.id;
+  if(!S.unlockedTitles.includes(titleId))S.unlockedTitles.push(titleId);
+  // Reveal reward
+  const rankRewards=_DR[dg.rank];
+  const rwd=rankRewards[Math.floor(Math.random()*rankRewards.length)];
+  S.pendingDungeonReward={ic:rwd.ic,name:rwd.name,desc:rwd.desc,rank:dg.rank,dgTitle:dg.title,xp:dg.xp};
+  S.currentDungeon=null;
+  save();render();
+  showDungeonReward();
+}
+
+function showDungeonReward(){
+  const r=S.pendingDungeonReward;
+  if(!r)return;
+  const ov=document.getElementById('dg-reward-ov');
+  if(!ov)return;
+  document.getElementById('dg-rw-rank').textContent='⚔️ DONJON RANG '+r.rank+' COMPLÉTÉ';
+  document.getElementById('dg-rw-ic').textContent=r.ic;
+  document.getElementById('dg-rw-name').textContent=r.name;
+  document.getElementById('dg-rw-desc').textContent=r.desc;
+  document.getElementById('dg-rw-xp').textContent='+'+r.xp+' XP';
+  document.getElementById('dg-rw-title').textContent='✦ Titre débloqué : '+r.dgTitle;
+  ov.style.display='flex';
+}
+
+function closeDungeonReward(){
+  S.pendingDungeonReward=null;
+  document.getElementById('dg-reward-ov').style.display='none';
+  save();render();
+  notif('⚔️ Donjon terminé — butin réclamé');
+}
+
+function failDungeon(){
+  S.dungeonFailed++;
+  S.currentDungeon=null;
+  save();render();
+  notif('⚠ Donjon abandonné — nouveau tirage dimanche prochain');
+}
+
+function closeMidBilan(){
+  S.showMidBilan=false;
+  document.getElementById('mid-bilan').style.display='none';
+  save();
+}
+
+function renderMidBilan(){
+  const mb=document.getElementById('mid-bilan');
+  if(!mb)return;
+  if(!S.showMidBilan||!S.midBilan){mb.style.display='none';return;}
+  const b=S.midBilan;
+  document.getElementById('mb-title').textContent='⬡ BILAN J'+b.day+' — SAISON '+S.seasonNum;
+  document.getElementById('mb-stats').innerHTML=
+    '<div class="mb-stat"><div class="mb-val">'+b.avg+'%</div><div class="mb-lbl">Moy. journée</div></div>'+
+    '<div class="mb-stat"><div class="mb-val">'+b.xp.toLocaleString('fr')+'</div><div class="mb-lbl">XP gagnés</div></div>'+
+    '<div class="mb-stat"><div class="mb-val">'+b.streak+'</div><div class="mb-lbl">Meilleur streak</div></div>'+
+    '<div class="mb-stat"><div class="mb-val">'+b.dungeonOk+'</div><div class="mb-lbl">Donjons ✓</div></div>'+
+    '<div class="mb-stat"><div class="mb-val">'+b.fajr+'</div><div class="mb-lbl">Fajr streak</div></div>'+
+    '<div class="mb-stat"><div class="mb-val">'+(b.day===30?'30':'60')+'</div><div class="mb-lbl">Jours actifs</div></div>';
+  mb.style.display='block';
+}
+
 function toggleVacation(){
   S.vacationMode=!S.vacationMode;
   if(!S.vacationMode){
@@ -1950,6 +2412,7 @@ function goTab(id,el){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
   document.getElementById('page-'+id).classList.add('on');el.classList.add('on');
+  if(id==='main')render();
   if(id==='rewards')renderRewards();
   if(id==='history')renderHistory();
   if(id==='seasons')renderSeasons();
